@@ -13,15 +13,20 @@ export const LoginFormFieldSet = styled.form`
 
 export const LoginFormInput = styled.input`
   ${({ theme }) => css`
-    padding: 25px 12px;
+    padding: 20px 12px;
     background: transparent;
     outline: ${theme.colors.bs_blue};
     border: 1px solid ${theme.colors.bs_dark_text_emphasis};
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 1rem;
     &::placeholder {
       text-transform: capitalize;
     }
+    &:focus-visible {
+      outline: 0.5px solid ${theme.colors.bs_blue};
+      border: none;
+    }
+
     font-family: ${theme.fonts.bs_font_sans_serif};
   `}
 `;
@@ -32,6 +37,7 @@ export const LoginFormButton = styled.button`
     border: none;
     color: white;
     border-radius: 8px;
+    cursor: pointer;
   `}
 `;
 export const LoginFormButtonContainer = styled.div`
