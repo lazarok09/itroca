@@ -1,22 +1,24 @@
-import Head from "next/head";
+"use client";
 import Link from "next/link";
-
-enum metadata {
-  title = "I Troca",
-  description = "Troque seu telefone por outro, compras avaliações e muito mais !",
-}
+import { HeaderLink, HeaderNavigation, HeaderWrapper } from "./styles";
+import { useRouter } from "next/router";
+import { Suspense } from "react";
 
 export const Header = () => {
   return (
-    <header>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <nav>
-          <Link href={"/"}>Inicio</Link>
-          <Link href={"/login"}>Login</Link>
-        </nav>
-      </Head>
-    </header>
+    <HeaderWrapper>
+      <HeaderNavigation>
+        <Suspense>
+          <HeaderLink active={false}>
+            <Link href={"/"}>Inicio</Link>
+          </HeaderLink>
+        </Suspense>
+        <Suspense>
+          <HeaderLink active>
+            <Link href={"/login"}>Login</Link>
+          </HeaderLink>
+        </Suspense>
+      </HeaderNavigation>
+    </HeaderWrapper>
   );
 };

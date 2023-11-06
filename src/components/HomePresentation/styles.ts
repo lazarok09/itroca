@@ -22,5 +22,6 @@ export const HomePresentationLogoContainer = styled.div`
 export const HomePresentationDescriptionDanger = styled.p`
   ${({ theme }) => css`
     color: ${theme.colors.bs_danger};
+    text-transform: capitalize;
   `}
 `;

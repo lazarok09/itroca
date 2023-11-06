@@ -10,12 +10,12 @@ const styles = css`
   body {
     max-width: 100vw;
     overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
   }
   a {
     color: inherit;
     text-decoration: none;
   }
-  
 `;
 
 const GlobalStyles = createGlobalStyle`
