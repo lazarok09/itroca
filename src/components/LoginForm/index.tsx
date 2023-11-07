@@ -13,7 +13,7 @@ import { submitLogin } from "@/services/itroca";
 type LoginFormProps = {};
 
 type Inputs = {
-  login: string;
+  useremail: string;
   password: string;
 };
 
@@ -28,7 +28,13 @@ export const LoginForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    await submitLogin(data);
+    const result = await submitLogin(data);
+    if (result?.error) {
+      alert("ERRO");
+    }
+    if (result?.ok) {
+      alert("SUCESSO");
+    }
   };
 
   return (
@@ -36,11 +42,11 @@ export const LoginForm = () => {
       <LoginFormFieldSet>
         <label htmlFor="login" />
         <LoginFormInput
-          id="name"
-          type="text"
+          id="email"
+          type="email"
           placeholder="login"
           required
-          {...register("login")}
+          {...register("useremail")}
         />
 
         <label htmlFor="password" />

@@ -1,6 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-export default NextAuth({
+
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -10,16 +11,29 @@ export default NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        useremail: {
+          label: "User email",
+          type: "text",
+          placeholder: "example@hotmail.com",
+        },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        const mockUser = {
+          id: "1",
+          email: "testuser@example.com",
+        };
 
-        if (user) {
+        const isValidUser =
+          mockUser &&
+          credentials?.useremail === mockUser.email &&
+          credentials?.password === "123";
+
+        if (isValidUser) {
           // Any object returned will be saved in `user` property of the JWT
-          return user;
+          return { ...mockUser, token: "KDW9k02139ik102mo" };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null;
@@ -30,3 +44,5 @@ export default NextAuth({
     }),
   ],
 });
+
+export { handler as GET, handler as POST };

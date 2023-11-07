@@ -7,11 +7,12 @@ export const LoginFormWrapper = styled.form`
     gap: 12px;
   `}
 `;
-export const LoginFormFieldSet = styled.form`
+export const LoginFormFieldSet = styled.fieldset`
   ${() => css`
     display: flex;
     flex-direction: column;
     gap: 6px;
+    border: none;
   `}
 `;
 

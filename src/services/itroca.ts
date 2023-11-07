@@ -1,9 +1,18 @@
+import { signIn } from "next-auth/react";
+
 export const submitLogin = async ({
-  login,
+  useremail,
   password,
 }: {
-  login: string;
+  useremail: string;
   password: string;
 }) => {
-  return true;
+  const result = await signIn("credentials", {
+    redirect: false,
+    useremail,
+    password,
+
+    // Incluir os campos de autenticação (email, senha, etc.) aqui.
+  });
+  return result;
 };
