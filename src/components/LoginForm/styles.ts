@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const LoginFormWrapper = styled.form`
-  ${() => css``}
+  ${() => css`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  `}
 `;
 export const LoginFormFieldSet = styled.form`
   ${() => css`
@@ -48,7 +52,7 @@ export const LoginFormInput = styled.input`
     font-family: ${theme.fonts.bs_font_sans_serif};
   `}
 `;
-export const LoginFormButton = styled.button`
+export const LoginFormSubmitInput = styled.input`
   ${({ theme }) => css`
     background: ${theme.colors.bs_gray};
     padding: 12px 25px;

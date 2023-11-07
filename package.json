@@ -13,6 +13,7 @@
     "next-auth": "^4.24.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.48.2",
     "styled-components": "^6.1.0"
   },
   "devDependencies": {

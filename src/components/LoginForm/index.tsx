@@ -1,46 +1,60 @@
 "use client";
-import { FormEvent, useRef } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
 import {
-  LoginFormButton,
+  LoginFormSubmitInput,
   LoginFormButtonContainer,
   LoginFormFieldSet,
   LoginFormInput,
   LoginFormWrapper,
 } from "./styles";
+import { submitLogin } from "@/services/itroca";
 
-type LoginFormProps = {
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  submiting: boolean;
+type LoginFormProps = {};
+
+type Inputs = {
+  login: string;
+  password: string;
 };
 
-export const LoginForm = ({ handleSubmit, submiting }: LoginFormProps) => {
+export const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
+    await submitLogin(data);
+  };
+
   return (
-    <LoginFormWrapper onSubmit={handleSubmit}>
+    <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <LoginFormFieldSet>
         <label htmlFor="login" />
         <LoginFormInput
-          name="login"
           id="name"
           type="text"
           placeholder="login"
           required
+          {...register("login")}
         />
 
         <label htmlFor="password" />
         <LoginFormInput
-          name="password"
           id="password"
           type="password"
           placeholder="senha"
           required
+          {...register("password")}
         />
-
-        <LoginFormButtonContainer>
-          <LoginFormButton disabled={submiting} type="submit">
-            Login
-          </LoginFormButton>
-        </LoginFormButtonContainer>
       </LoginFormFieldSet>
+      <LoginFormButtonContainer>
+        <LoginFormSubmitInput disabled={false} type="submit" />
+      </LoginFormButtonContainer>
     </LoginFormWrapper>
   );
 };
