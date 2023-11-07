@@ -6,6 +6,7 @@ export const LoginPageContainerWrapper = styled.main`
   ${() => css`
     display: flex;
     justify-content: center;
+    margin-top: 3.8rem;
   `}
 `;
 

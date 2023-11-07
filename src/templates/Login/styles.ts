@@ -4,6 +4,10 @@ import styled, { css } from "styled-components";
 
 export const LoginPageWrapper = styled.main`
   ${() => css`
-    height: 100vh;
+    min-height: 80vh;
+
+    @media (min-width: 600px) {
+      min-height: 85vh;
+    }
   `}
 `;
