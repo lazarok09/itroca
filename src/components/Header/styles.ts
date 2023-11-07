@@ -6,8 +6,8 @@ export const HeaderWrapper = styled.header`
     position: sticky;
     top: 0;
     width: 100%;
-    height: 40px;
-    padding: 0 60px;
+    height: auto;
+    padding: 4px 60px;
     justify-content: flex-end;
   `}
 `;
