@@ -1,13 +1,13 @@
+"use client";
+
 import styled, { css } from "styled-components";
 
-export const LoginPageWrapper = styled.main`
+export const LoginPageContainerWrapper = styled.main`
   ${() => css`
     display: flex;
     justify-content: center;
-    height: 100vh;
   `}
 `;
-
 
 export const LoginCard = styled.div`
   ${() => css`

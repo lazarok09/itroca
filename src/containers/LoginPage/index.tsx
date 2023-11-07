@@ -1,5 +1,3 @@
-"use client";
-
 import { LoginForm } from "@/components/LoginForm";
 import { FormEvent, useState } from "react";
 
@@ -10,7 +8,7 @@ import {
   LoginFormAlterLink,
   LoginFormOtherOptions,
   LoginFormSeparator,
-  LoginPageWrapper,
+  LoginPageContainerWrapper,
 } from "./styles";
 
 import { Heading } from "@/components/Heading";
@@ -28,7 +26,7 @@ export const LoginPageContainer = () => {
     return;
   }
   return (
-    <LoginPageWrapper>
+    <LoginPageContainerWrapper>
       <LoginCard>
         <LoginCardHeading>
           <Heading>Login</Heading>
@@ -46,6 +44,6 @@ export const LoginPageContainer = () => {
           </LoginFormOtherOptions>
         </LoginCardItems>
       </LoginCard>
-    </LoginPageWrapper>
+    </LoginPageContainerWrapper>
   );
 };

@@ -1,7 +1,5 @@
-"use client";
 import Link from "next/link";
 import { HeaderLink, HeaderNavigation, HeaderWrapper } from "./styles";
-import { useRouter } from "next/router";
 import { Suspense } from "react";
 
 export const Header = () => {
