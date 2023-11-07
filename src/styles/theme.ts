@@ -50,6 +50,7 @@ export const theme = {
     bs_primary_bg_subtle: "#ccf1fd",
     bs_secondary_bg_subtle: "#e2e3e5",
     bs_success_bg_subtle: "#ccf9e0",
+    bs_body_bg: "#f8fafc",
   },
   fonts: {
     bs_font_sans_serif: '"Montserrat", sans-serif',

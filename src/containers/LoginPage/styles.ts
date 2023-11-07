@@ -8,7 +8,6 @@ export const LoginPageWrapper = styled.main`
   `}
 `;
 
-const paddings = "12px";
 
 export const LoginCard = styled.div`
   ${() => css`
@@ -22,18 +21,22 @@ export const LoginCardHeading = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.bs_green};
     color: white;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    padding-left: ${paddings};
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 8px 16px;
+    border-bottom: 1px solid ${theme.colors.bs_gray_500};
+    font-size: 14px;
+    font-family: ${theme.fonts.bs_font_sans_serif};
   `}
 `;
 
 export const LoginCardItems = styled.div`
-  ${() => css`
+  ${({ theme }) => css`
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: ${paddings};
+    padding: 1rem;
+    background-color: ${theme.colors.bs_body_bg};
   `}
 `;
 export const LoginFormOtherOptions = styled.div`
