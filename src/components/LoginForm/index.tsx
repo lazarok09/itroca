@@ -22,15 +22,22 @@ export const LoginForm = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    const result = await submitLogin(data);
-    if (result?.error) {
-      toast.error("Ops... parece que ocorreu um erro na sua requisição :/");
-    }
-    if (result?.ok) {
-      alert("SUCESSO");
-      toast.success(`Bem vindo(a) ${data.useremail.split("@")[0]}`);
-    }
+    submitLogin(data).then((response) => {
+      if (response?.error) {
+        toast.error(`Login ou senha inválidos`, {
+          className: "toast-custom-icon",
+          autoClose: false,
+          toastId: `error-${data.useremail}`
+        });
+      }
+      if (response?.ok) {
+        toast.success(`Bem vindo(a) de volta`, {
+          className: "toast-custom-icon",
+          autoClose: false,
+          toastId: `success-${data.useremail}`,
+        });
+      }
+    });
   };
 
   return (

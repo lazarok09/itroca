@@ -16,6 +16,11 @@ const styles = css`
     color: inherit;
     text-decoration: none;
   }
+  .toast-custom-icon {
+    .Toastify__toast-body {
+      gap: 4px;
+    }
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`
