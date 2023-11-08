@@ -18,25 +18,32 @@ export const LoginForm = () => {
     handleSubmit,
     watch,
 
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const response = await submitLogin(data);
-    if (response?.error) {
-      toast.error(`Login ou senha inválidos`, {
-        className: "toast-custom-icon",
-        autoClose: false,
-        toastId: `error-${data.useremail}`,
-      });
-    }
-    if (response?.ok) {
-      toast.success(`Bem vindo(a) de volta`, {
-        className: "toast-custom-icon",
-        autoClose: false,
-        toastId: `success-${data.useremail}`,
-      });
-    }
+    return new Promise(async (resolve, reject) => {
+      const response = await submitLogin(data);
+      if (response?.error) {
+        toast.error(`Login ou senha inválidos`, {
+          className: "toast-custom-icon",
+          toastId: `error-${data.useremail}`,
+          autoClose: 2000,
+        });
+        resolve(true);
+      }
+      if (response?.ok) {
+        toast.success(`Bem vindo(a) de volta`, {
+          className: "toast-custom-icon",
+          toastId: `success-${data.useremail}`,
+          autoClose: 2000,
+        });
+        reject({
+          error: response?.error,
+          status: response?.status,
+        });
+      }
+    });
   };
 
   return (
@@ -61,7 +68,7 @@ export const LoginForm = () => {
         />
       </Styled.LoginFormFieldSet>
       <Styled.LoginFormButtonContainer>
-        <Styled.LoginFormSubmitInput disabled={false} type="submit" />
+        <Styled.LoginFormSubmitInput disabled={isSubmitting} type="submit" />
       </Styled.LoginFormButtonContainer>
     </Styled.LoginFormWrapper>
   );
