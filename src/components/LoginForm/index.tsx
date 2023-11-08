@@ -49,20 +49,19 @@ export const LoginForm = () => {
   return (
     <Styled.LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <Styled.LoginFormFieldSet>
-        <label htmlFor="login" />
         <Styled.LoginFormInput
           id="email"
           type="email"
-          placeholder="login"
+          placeholder="Email"
+          
           required
           {...register("useremail")}
         />
 
-        <label htmlFor="password" />
         <Styled.LoginFormInput
           id="password"
           type="password"
-          placeholder="senha"
+          placeholder="Senha"
           required
           {...register("password")}
         />
