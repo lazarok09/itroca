@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -23,7 +24,7 @@ const handler = NextAuth({
         // Add logic here to look up the user from the credentials supplied
         const mockUser = {
           id: "1",
-          email: "testuser@example.com",
+          email: "lazarok09@gmail.com",
         };
 
         const isValidUser =

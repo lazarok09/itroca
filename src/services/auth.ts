@@ -7,7 +7,7 @@ type DashBoardGuardProps = {
   children: React.ReactNode;
 };
 export const DashBoardGuard = ({ children, session }: DashBoardGuardProps) => {
-  if (!session || !session?.user.token) {
+  if (!session || !session?.user) {
     redirect("/login");
   }
 

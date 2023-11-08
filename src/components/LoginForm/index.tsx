@@ -5,8 +5,6 @@ import * as Styled from "./styles";
 import { submitLogin } from "@/services/itroca";
 import { toast } from "react-toastify";
 
-type LoginFormProps = {};
-
 type Inputs = {
   useremail: string;
   password: string;
@@ -28,7 +26,7 @@ export const LoginForm = () => {
         toast.error(`Login ou senha inválidos`, {
           className: "toast-custom-icon",
           toastId: `error-${data.useremail}`,
-          autoClose: 2000,
+          autoClose: 1500,
         });
         resolve(true);
       }
@@ -36,7 +34,7 @@ export const LoginForm = () => {
         toast.success(`Bem vindo(a) de volta`, {
           className: "toast-custom-icon",
           toastId: `success-${data.useremail}`,
-          autoClose: 2000,
+          autoClose: 1500,
         });
         reject({
           error: response?.error,
@@ -53,7 +51,6 @@ export const LoginForm = () => {
           id="email"
           type="email"
           placeholder="Email"
-          
           required
           {...register("useremail")}
         />

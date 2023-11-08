@@ -6,8 +6,11 @@ export default async function Page() {
   const session = await getServerSession();
 
   return (
-    <DashBoardGuard session={session}>
-      <h1>Hello {session?.user.email}</h1>
-    </DashBoardGuard>
+    <>
+      <DashBoardGuard session={session}>
+        <h1>Hello {session?.user?.email}</h1>
+        <Dashboard />
+      </DashBoardGuard>
+    </>
   );
 }
