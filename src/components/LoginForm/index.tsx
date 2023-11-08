@@ -22,22 +22,21 @@ export const LoginForm = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    submitLogin(data).then((response) => {
-      if (response?.error) {
-        toast.error(`Login ou senha inválidos`, {
-          className: "toast-custom-icon",
-          autoClose: false,
-          toastId: `error-${data.useremail}`
-        });
-      }
-      if (response?.ok) {
-        toast.success(`Bem vindo(a) de volta`, {
-          className: "toast-custom-icon",
-          autoClose: false,
-          toastId: `success-${data.useremail}`,
-        });
-      }
-    });
+    const response = await submitLogin(data);
+    if (response?.error) {
+      toast.error(`Login ou senha inválidos`, {
+        className: "toast-custom-icon",
+        autoClose: false,
+        toastId: `error-${data.useremail}`,
+      });
+    }
+    if (response?.ok) {
+      toast.success(`Bem vindo(a) de volta`, {
+        className: "toast-custom-icon",
+        autoClose: false,
+        toastId: `success-${data.useremail}`,
+      });
+    }
   };
 
   return (
