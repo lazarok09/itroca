@@ -1,21 +1,21 @@
-"use client";
 import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import { ThemeProvider } from "styled-components";
 import GlobalStyles from "@/styles/global";
-import { theme } from "@/styles/theme";
 import Head from "next/head";
 import ToastProvider from "./toast";
-import { SessionProvider } from "next-auth/react";
+import { NextSessionProvider } from "@/lib/session";
+import { StyledThemeProvider } from "@/lib/theme";
+import { getServerSession } from "next-auth";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
   return (
     <html lang="pt-br">
       <Head>
@@ -38,14 +38,14 @@ export default function RootLayout({
         />
       </Head>
       <body className={inter.className}>
-        <SessionProvider>
+        <NextSessionProvider session={session}>
           <ToastProvider>
             <StyledComponentsRegistry>
               <GlobalStyles />
-              <ThemeProvider theme={theme}>{children}</ThemeProvider>
+              <StyledThemeProvider>{children}</StyledThemeProvider>
             </StyledComponentsRegistry>
           </ToastProvider>
-        </SessionProvider>
+        </NextSessionProvider>
       </body>
     </html>
   );

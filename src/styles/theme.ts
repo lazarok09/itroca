@@ -1,3 +1,4 @@
+"use client";
 export const theme = {
   colors: {
     bs_blue: "#01bbf6",
