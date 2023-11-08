@@ -1,3 +1,4 @@
+import { authorizeNextAuthHandler } from "@/services/itroca";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -22,19 +23,18 @@ const handler = NextAuth({
 
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const mockUser = {
-          id: "1",
-          email: "lazarok09@gmail.com",
-        };
 
-        const isValidUser =
-          mockUser &&
-          credentials?.useremail === mockUser.email &&
-          credentials?.password === "123";
+        if (!credentials?.password || !credentials.useremail) return null;
+
+        const data = await authorizeNextAuthHandler({
+          email: credentials?.useremail,
+          password: credentials?.password,
+        });
+        const isValidUser = data;
 
         if (isValidUser) {
           // Any object returned will be saved in `user` property of the JWT
-          return { ...mockUser, token: "KDW9k02139ik102mo" };
+          return { ...data, token: "KDW9k02139ik102mo" };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null;

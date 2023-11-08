@@ -4,6 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as Styled from "./styles";
 import { submitLogin } from "@/services/itroca";
 import { toast } from "react-toastify";
+import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 type Inputs = {
   useremail: string;
@@ -11,6 +13,7 @@ type Inputs = {
 };
 
 export const LoginForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,7 +21,7 @@ export const LoginForm = () => {
 
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
-
+  const session = useSession();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     return new Promise(async (resolve, reject) => {
       const response = await submitLogin(data);
@@ -43,7 +46,9 @@ export const LoginForm = () => {
       }
     });
   };
-
+  if (session) {
+    redirect("/dashboard");
+  }
   return (
     <Styled.LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <Styled.LoginFormFieldSet>
