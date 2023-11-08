@@ -1,13 +1,7 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import {
-  LoginFormSubmitInput,
-  LoginFormButtonContainer,
-  LoginFormFieldSet,
-  LoginFormInput,
-  LoginFormWrapper,
-} from "./styles";
+import * as Styled from "./styles";
 import { submitLogin } from "@/services/itroca";
 import { toast } from "react-toastify";
 
@@ -35,15 +29,15 @@ export const LoginForm = () => {
     }
     if (result?.ok) {
       alert("SUCESSO");
-      toast.success(`Bem vindo(a) ${data.useremail.split('@')[0]}`);
+      toast.success(`Bem vindo(a) ${data.useremail.split("@")[0]}`);
     }
   };
 
   return (
-    <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <LoginFormFieldSet>
+    <Styled.LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <Styled.LoginFormFieldSet>
         <label htmlFor="login" />
-        <LoginFormInput
+        <Styled.LoginFormInput
           id="email"
           type="email"
           placeholder="login"
@@ -52,17 +46,17 @@ export const LoginForm = () => {
         />
 
         <label htmlFor="password" />
-        <LoginFormInput
+        <Styled.LoginFormInput
           id="password"
           type="password"
           placeholder="senha"
           required
           {...register("password")}
         />
-      </LoginFormFieldSet>
-      <LoginFormButtonContainer>
-        <LoginFormSubmitInput disabled={false} type="submit" />
-      </LoginFormButtonContainer>
-    </LoginFormWrapper>
+      </Styled.LoginFormFieldSet>
+      <Styled.LoginFormButtonContainer>
+        <Styled.LoginFormSubmitInput disabled={false} type="submit" />
+      </Styled.LoginFormButtonContainer>
+    </Styled.LoginFormWrapper>
   );
 };

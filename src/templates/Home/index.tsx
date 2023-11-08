@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 
-import { HomeWrapper, MainWrapper } from "./styles";
+import * as Styled  from "./styles";
 
 import { HomePresentation } from "@/components/HomePresentation";
 import { Footer } from "@/components/Footer";
@@ -9,11 +9,11 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <HomeWrapper>
-        <MainWrapper>
+      <Styled.HomeWrapper>
+        <Styled.MainWrapper>
           <HomePresentation />
-        </MainWrapper>
-      </HomeWrapper>
+        </Styled.MainWrapper>
+      </Styled.HomeWrapper>
       <Footer />
     </>
   );

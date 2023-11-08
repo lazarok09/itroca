@@ -1,39 +1,29 @@
 "use client";
 import { LoginForm } from "@/components/LoginForm";
 
-import {
-  LoginCard,
-  LoginCardHeading,
-  LoginCardItems,
-  LoginFormAlterLink,
-  LoginFormOtherOptions,
-  LoginFormSeparator,
-  LoginPageContainerWrapper,
-} from "./styles";
+import * as Styled from "./styles";
 
-import { Heading } from "@/components/Heading";
 import Link from "next/link";
+import { LoginCardHeading } from "@/components/LoginCardHeading";
 
 export const LoginPageContainer = () => {
   return (
-    <LoginPageContainerWrapper>
-      <LoginCard>
-        <LoginCardHeading>
-          <Heading>Login</Heading>
-        </LoginCardHeading>
-        <LoginCardItems>
+    <Styled.LoginPageContainerWrapper>
+      <Styled.LoginCard>
+        <LoginCardHeading />
+        <Styled.LoginCardItems>
           <LoginForm />
-          <LoginFormOtherOptions>
-            <LoginFormSeparator />
-            <LoginFormAlterLink>
+          <Styled.LoginFormOtherOptions>
+            <Styled.LoginFormSeparator />
+            <Styled.LoginFormAlterLink>
               <Link href={"/"}>Cadastre-se</Link>
-            </LoginFormAlterLink>
-            <LoginFormAlterLink>
+            </Styled.LoginFormAlterLink>
+            <Styled.LoginFormAlterLink>
               <Link href={"/"}>Esqueci a senha</Link>
-            </LoginFormAlterLink>
-          </LoginFormOtherOptions>
-        </LoginCardItems>
-      </LoginCard>
-    </LoginPageContainerWrapper>
+            </Styled.LoginFormAlterLink>
+          </Styled.LoginFormOtherOptions>
+        </Styled.LoginCardItems>
+      </Styled.LoginCard>
+    </Styled.LoginPageContainerWrapper>
   );
 };

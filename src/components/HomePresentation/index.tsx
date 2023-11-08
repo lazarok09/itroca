@@ -1,25 +1,20 @@
 import { Heading } from "../Heading";
 import { LogoImage } from "../LogoImage";
-import {
-  HomePresentationDescription,
-  HomePresentationDescriptionDanger,
-  HomePresentationLogoContainer,
-  HomePresentationWrapper,
-} from "./styles";
+import * as Styled from "./styles";
 
 export const HomePresentation = () => {
   return (
-    <HomePresentationWrapper>
-      <HomePresentationLogoContainer>
+    <Styled.HomePresentationWrapper>
+      <Styled.HomePresentationLogoContainer>
         <LogoImage />
         <Heading>iTroca</Heading>
-      </HomePresentationLogoContainer>
-      <HomePresentationDescription>
+      </Styled.HomePresentationLogoContainer>
+      <Styled.HomePresentationDescription>
         Compras e avaliações
-      </HomePresentationDescription>
-      <HomePresentationDescriptionDanger>
+      </Styled.HomePresentationDescription>
+      <Styled.HomePresentationDescriptionDanger>
         É fácil, é rápido, é grátis
-      </HomePresentationDescriptionDanger>
-    </HomePresentationWrapper>
+      </Styled.HomePresentationDescriptionDanger>
+    </Styled.HomePresentationWrapper>
   );
 };

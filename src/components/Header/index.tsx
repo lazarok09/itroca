@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { HeaderLink, HeaderNavigation, HeaderWrapper } from "./styles";
+import * as Styled from "./styles";
 import { Suspense } from "react";
 
 export const Header = () => {
   return (
-    <HeaderWrapper>
-      <HeaderNavigation>
+    <Styled.HeaderWrapper>
+      <Styled.HeaderNavigation>
         <Suspense>
-          <HeaderLink active={false}>
+          <Styled.HeaderLink active={false}>
             <Link href={"/"}>Inicio</Link>
-          </HeaderLink>
+          </Styled.HeaderLink>
         </Suspense>
         <Suspense>
-          <HeaderLink active>
+          <Styled.HeaderLink active>
             <Link href={"/login"}>Login</Link>
-          </HeaderLink>
+          </Styled.HeaderLink>
         </Suspense>
-      </HeaderNavigation>
-    </HeaderWrapper>
+      </Styled.HeaderNavigation>
+    </Styled.HeaderWrapper>
   );
 };

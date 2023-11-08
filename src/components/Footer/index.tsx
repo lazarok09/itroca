@@ -1,9 +1,11 @@
 "use client";
 
-import { FooterWrapper } from "./styles";
+import * as Styled from "./styles";
 
 export const Footer = () => {
   return (
-    <FooterWrapper>iTroca &reg; - Todos os direitos reservados</FooterWrapper>
+    <Styled.FooterWrapper>
+      iTroca &reg; - Todos os direitos reservados
+    </Styled.FooterWrapper>
   );
 };

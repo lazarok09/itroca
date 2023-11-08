@@ -1,13 +1,13 @@
 import React from "react";
-import { HeadingWrapper } from "./styles";
+import * as Styled  from "./styles";
 
 type Props = {
   children: React.ReactNode;
 };
 export const Heading = ({ children }: Props) => {
   return (
-    <HeadingWrapper>
+    <Styled.HeadingWrapper>
       <h1>{children}</h1>
-    </HeadingWrapper>
+    </Styled.HeadingWrapper>
   );
 };
