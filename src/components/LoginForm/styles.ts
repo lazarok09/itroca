@@ -1,3 +1,5 @@
+"use client";
+
 import styled, { css } from "styled-components";
 
 export const LoginFormWrapper = styled.form`
@@ -62,6 +64,9 @@ export const LoginFormSubmitInput = styled.input`
     border-radius: 8px;
     font-size: 1.1rem;
     cursor: pointer;
+    &:disabled {
+      background: ${theme.colors.bs_red};
+    }
   `}
 `;
 export const LoginFormButtonContainer = styled.div`
