@@ -46,7 +46,7 @@ export const LoginForm = () => {
       }
     });
   };
-  if (session) {
+  if (session?.status === 'authenticated') {
     redirect("/dashboard");
   }
   return (

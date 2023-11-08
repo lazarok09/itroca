@@ -2,6 +2,8 @@ import Link from "next/link";
 import * as Styled from "./styles";
 import { Suspense } from "react";
 
+import { SignOutButton } from "../User";
+
 export const Header = () => {
   return (
     <Styled.HeaderWrapper>
@@ -16,6 +18,7 @@ export const Header = () => {
             <Link href={"/login"}>Login</Link>
           </Styled.HeaderLink>
         </Suspense>
+        <SignOutButton />
       </Styled.HeaderNavigation>
     </Styled.HeaderWrapper>
   );
