@@ -1,9 +1,11 @@
 import { Header } from "@/components/Header";
 
-import * as Styled  from "./styles";
+import * as Styled from "./styles";
 
 import { HomePresentation } from "@/components/HomePresentation";
 import { Footer } from "@/components/Footer";
+import { Heading } from "@/components/Heading";
+import { LogoImage } from "@/components/LogoImage";
 
 export const Home = () => {
   return (
@@ -11,7 +13,8 @@ export const Home = () => {
       <Header />
       <Styled.HomeWrapper>
         <Styled.MainWrapper>
-          <HomePresentation />
+          <LogoImage />
+          <Heading>Bem vindo</Heading>
         </Styled.MainWrapper>
       </Styled.HomeWrapper>
       <Footer />
