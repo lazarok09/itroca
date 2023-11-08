@@ -9,6 +9,7 @@ import GlobalStyles from "@/styles/global";
 import { theme } from "@/styles/theme";
 import Head from "next/head";
 import ToastProvider from "./toast";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -37,12 +38,14 @@ export default function RootLayout({
         />
       </Head>
       <body className={inter.className}>
-        <ToastProvider>
-          <StyledComponentsRegistry>
-            <GlobalStyles />
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
-          </StyledComponentsRegistry>
-        </ToastProvider>
+        <SessionProvider>
+          <ToastProvider>
+            <StyledComponentsRegistry>
+              <GlobalStyles />
+              <ThemeProvider theme={theme}>{children}</ThemeProvider>
+            </StyledComponentsRegistry>
+          </ToastProvider>
+        </SessionProvider>
       </body>
     </html>
   );
