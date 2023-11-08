@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "@/styles/global";
 import { theme } from "@/styles/theme";
 import Head from "next/head";
+import ToastProvider from "./toast";
 
 export default function RootLayout({
   children,
@@ -36,10 +37,12 @@ export default function RootLayout({
         />
       </Head>
       <body className={inter.className}>
-        <StyledComponentsRegistry>
-          <GlobalStyles />
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        </StyledComponentsRegistry>
+        <ToastProvider>
+          <StyledComponentsRegistry>
+            <GlobalStyles />
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          </StyledComponentsRegistry>
+        </ToastProvider>
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ import {
   LoginFormWrapper,
 } from "./styles";
 import { submitLogin } from "@/services/itroca";
+import { toast } from "react-toastify";
 
 type LoginFormProps = {};
 
@@ -30,10 +31,11 @@ export const LoginForm = () => {
     console.log(data);
     const result = await submitLogin(data);
     if (result?.error) {
-      alert("ERRO");
+      toast.error("Ops... parece que ocorreu um erro na sua requisição :/");
     }
     if (result?.ok) {
       alert("SUCESSO");
+      toast.success(`Bem vindo(a) ${data.useremail.split('@')[0]}`);
     }
   };
 
