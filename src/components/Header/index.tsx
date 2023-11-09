@@ -5,16 +5,15 @@ import { Suspense } from "react";
 import { SignOutButton } from "../SignOutButton";
 import { SignInButton } from "../SignInButton";
 import { DashBoardButton } from "../DashBoardButton";
+import { HeaderLink } from "../HeaderLink";
 
 export const Header = () => {
   return (
     <Styled.HeaderWrapper>
       <Styled.HeaderNavigation>
-        <Suspense>
-          <Styled.HeaderLink active={false}>
-            <Link href={"/"}>Inicio</Link>
-          </Styled.HeaderLink>
-        </Suspense>
+        <HeaderLink active={false}>
+          <Link href={"/"}>Inicio</Link>
+        </HeaderLink>
         <DashBoardButton />
         <SignInButton />
         <SignOutButton />

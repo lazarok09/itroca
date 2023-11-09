@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import * as Styled from "../Header/styles";
 import Link from "next/link";
+import { HeaderLink } from "../HeaderLink";
 
 export const SignInButton = () => {
   const session = useSession();
@@ -10,8 +11,8 @@ export const SignInButton = () => {
   if (session.status === "authenticated") return null;
 
   return (
-    <Styled.HeaderLink active>
+    <HeaderLink active={true}>
       <Link href={"/login"}>Login</Link>
-    </Styled.HeaderLink>
+    </HeaderLink>
   );
 };

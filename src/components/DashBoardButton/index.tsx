@@ -1,8 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import * as Styled from "../Header/styles";
 import Link from "next/link";
+import { HeaderLink } from "../HeaderLink";
 
 export const DashBoardButton = () => {
   const session = useSession();
@@ -10,8 +10,8 @@ export const DashBoardButton = () => {
   if (session.status !== "authenticated") return null;
 
   return (
-    <Styled.HeaderLink active>
+    <HeaderLink active={true}>
       <Link href={"/dashboard"}>Dashboard</Link>
-    </Styled.HeaderLink>
+    </HeaderLink>
   );
 };

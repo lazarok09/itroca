@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import * as Styled from "../Header/styles";
+import { HeaderLink } from "../HeaderLink";
 
 export const SignOutButton = () => {
   const handleClick = () => {
@@ -12,8 +12,8 @@ export const SignOutButton = () => {
   if (session.status !== "authenticated") return null;
 
   return (
-    <Styled.HeaderLink active onClick={handleClick}>
+    <HeaderLink active onClick={handleClick}>
       Deslogar
-    </Styled.HeaderLink>
+    </HeaderLink>
   );
 };

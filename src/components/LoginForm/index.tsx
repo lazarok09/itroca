@@ -13,7 +13,6 @@ type Inputs = {
 };
 
 export const LoginForm = () => {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
