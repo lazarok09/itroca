@@ -13,7 +13,7 @@ export const Home = () => {
       <Styled.HomeWrapper>
         <Styled.MainWrapper>
           <LogoImage />
-          <Heading>Bem vindo</Heading>
+          <Heading>iTroca </Heading>
         </Styled.MainWrapper>
       </Styled.HomeWrapper>
       <Footer />
