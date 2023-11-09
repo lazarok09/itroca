@@ -30,5 +30,6 @@ export const HeaderLink = styled.div<{ active: boolean }>`
     font-weight: 600;
     border-radius: 8px;
     box-shadow: 0 0.5rem 1rem #00000026;
+    cursor: pointer;
   `}
 `;
