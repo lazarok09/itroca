@@ -20,7 +20,7 @@ const handler = NextAuth({
         },
         password: { label: "Password", type: "password" },
       },
-
+      // @ts-ignore
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
 
