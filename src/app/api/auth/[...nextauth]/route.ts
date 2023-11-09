@@ -30,11 +30,16 @@ const handler = NextAuth({
           email: credentials?.useremail,
           password: credentials?.password,
         });
-        const isValidUser = data;
+        const isValidUser =
+          data?.token && data?.shopkeeper.name && data?.shopkeeper.email;
 
         if (isValidUser) {
           // Any object returned will be saved in `user` property of the JWT
-          return { ...data, token: "KDW9k02139ik102mo" };
+          return {
+            token: data.token,
+            name: data.shopkeeper.name,
+            email: data.shopkeeper.email,
+          };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null;

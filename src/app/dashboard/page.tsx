@@ -8,7 +8,6 @@ export default async function Page() {
   return (
     <>
       <DashBoardGuard session={session}>
-        <h1>Hello {session?.user?.email}</h1>
         <Dashboard />
       </DashBoardGuard>
     </>

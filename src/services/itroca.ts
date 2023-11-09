@@ -33,6 +33,6 @@ export const authorizeNextAuthHandler = async (props: {
     "https://itroca.com.br/api/shopkeeper/auth/signin",
     options
   );
-  const data = await response.json();
+  const data: iTrocaUser = await response.json();
   return data;
 };
