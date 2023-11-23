@@ -1,7 +1,4 @@
-"use client";
 import { LoginForm } from "@/components/LoginForm";
-
-import * as Styled from "./styles";
 
 import Link from "next/link";
 import { LoginCardHeading } from "@/components/LoginCardHeading";
