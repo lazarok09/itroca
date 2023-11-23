@@ -10,6 +10,7 @@ export const Home = () => {
   return (
     <>
       <Header />
+
       <Styled.HomeWrapper>
         <Styled.MainWrapper>
           <LogoImage />
