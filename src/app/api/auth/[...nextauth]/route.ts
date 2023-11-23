@@ -30,6 +30,7 @@ const handler = NextAuth({
           email: credentials?.useremail,
           password: credentials?.password,
         });
+        
         const isValidUser =
           data?.token && data?.shopkeeper.name && data?.shopkeeper.email;
 
