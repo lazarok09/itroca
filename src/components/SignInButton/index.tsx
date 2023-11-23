@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import * as Styled from "../Header/styles";
 import Link from "next/link";
 import { HeaderLink } from "../HeaderLink";
 

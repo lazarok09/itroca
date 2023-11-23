@@ -4,7 +4,6 @@ import { SignOutButton } from "../SignOutButton";
 import { SignInButton } from "../SignInButton";
 import { DashBoardButton } from "../DashBoardButton";
 import { HeaderLink } from "../HeaderLink";
-import { LogoImage } from "../LogoImage";
 
 export const Header = () => {
   return (
