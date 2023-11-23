@@ -1,12 +1,10 @@
 import { Inter } from "next/font/google";
-import StyledComponentsRegistry from "@/lib/registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import GlobalStyles from "@/styles/global";
 import ToastProvider from "./toast";
 import { NextSessionProvider } from "@/lib/session";
-import { StyledThemeProvider } from "@/lib/theme";
+
 import { getServerSession } from "next-auth";
 
 import "./global.css";
@@ -21,12 +19,7 @@ export default async function RootLayout({
     <html lang="pt-br">
       <body className={inter.className}>
         <NextSessionProvider session={session}>
-          <ToastProvider>
-            <StyledComponentsRegistry>
-              <GlobalStyles />
-              <StyledThemeProvider>{children}</StyledThemeProvider>
-            </StyledComponentsRegistry>
-          </ToastProvider>
+          <ToastProvider>{children}</ToastProvider>
         </NextSessionProvider>
       </body>
     </html>

@@ -8,22 +8,26 @@ import { LoginCardHeading } from "@/components/LoginCardHeading";
 
 export const LoginPageContainer = () => {
   return (
-    <Styled.LoginPageContainerWrapper>
-      <Styled.LoginCard>
+    <main className="flex justify-center mt-20">
+      <div className="rounded-b-xl shadow-md h-min">
         <LoginCardHeading />
-        <Styled.LoginCardItems>
+        <section className="flex-col gap-3 p-4">
           <LoginForm />
-          <Styled.LoginFormOtherOptions>
-            <Styled.LoginFormSeparator />
-            <Styled.LoginFormAlterLink>
-              <Link href={"/"}>Cadastre-se</Link>
-            </Styled.LoginFormAlterLink>
-            <Styled.LoginFormAlterLink>
-              <Link href={"/"}>Esqueci a senha</Link>
-            </Styled.LoginFormAlterLink>
-          </Styled.LoginFormOtherOptions>
-        </Styled.LoginCardItems>
-      </Styled.LoginCard>
-    </Styled.LoginPageContainerWrapper>
+          <div className="flex-col">
+            <hr />
+            <div>
+              <Link className="underline" href={"/"}>
+                Cadastre-se
+              </Link>
+            </div>
+            <div>
+              <Link className="underline" href={"/"}>
+                Esqueci a senha
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 };

@@ -1,23 +1,29 @@
 import { Header } from "@/components/Header";
 
-import * as Styled from "./styles";
-
 import { Footer } from "@/components/Footer";
 import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
+import { Fragment } from "react";
 
 export const Home = () => {
   return (
-    <>
+    <Fragment>
       <Header />
 
-      <Styled.HomeWrapper>
-        <Styled.MainWrapper>
-          <LogoImage />
-          <Heading>iTroca </Heading>
-        </Styled.MainWrapper>
-      </Styled.HomeWrapper>
+      <div
+        className="min-h-screen    display: flex;
+          flex
+          font-mono
+          h-full
+          justify-center
+          items-center
+          gap-1"
+      >
+        <LogoImage />
+        <Heading>iTroca </Heading>
+      </div>
+
       <Footer />
-    </>
+    </Fragment>
   );
 };

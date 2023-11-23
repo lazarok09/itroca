@@ -1,13 +1,24 @@
 import React, { HTMLAttributes } from "react";
-import * as Styled from "./styles";
+
 type HeaderLinkProps = {
   children: React.ReactNode;
   active: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 export const HeaderLink = ({ children, active, ...rest }: HeaderLinkProps) => {
   return (
-    <Styled.HeaderLinkWrapper className={active ? "active" : ""} {...rest}>
+    <div
+      className={`
+    py-2 px-6
+    font-semibold
+    rounded-lg
+    shadow-md
+    cursor-pointer
+   ${active && "bg-green-400"}
+    
+    `}
+      {...rest}
+    >
       {children}
-    </Styled.HeaderLinkWrapper>
+    </div>
   );
 };

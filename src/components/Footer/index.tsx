@@ -1,11 +1,7 @@
-"use client";
-
-import * as Styled from "./styles";
-
 export const Footer = () => {
   return (
-    <Styled.FooterWrapper>
+    <footer className="text-center relative bottom-0">
       iTroca &reg; - Todos os direitos reservados
-    </Styled.FooterWrapper>
+    </footer>
   );
 };

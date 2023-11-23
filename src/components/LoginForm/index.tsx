@@ -1,11 +1,12 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import * as Styled from "./styles";
 import { submitLogin } from "@/services/itroca";
 import { toast } from "react-toastify";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { InputSubmit } from "../SubmitInput";
+import { Input } from "../Input";
 
 type Inputs = {
   useremail: string;
@@ -45,13 +46,20 @@ export const LoginForm = () => {
       }
     });
   };
-  if (session?.status === 'authenticated') {
+  if (session?.status === "authenticated") {
     redirect("/dashboard");
   }
   return (
-    <Styled.LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <Styled.LoginFormFieldSet>
-        <Styled.LoginFormInput
+    <form
+      className="
+    flex
+    flex-col
+    gap-6
+    "
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <fieldset className="flex flex-col gap-5 border-none">
+        <Input
           id="email"
           type="email"
           placeholder="Email"
@@ -59,17 +67,17 @@ export const LoginForm = () => {
           {...register("useremail")}
         />
 
-        <Styled.LoginFormInput
+        <Input
           id="password"
           type="password"
           placeholder="Senha"
           required
           {...register("password")}
         />
-      </Styled.LoginFormFieldSet>
-      <Styled.LoginFormButtonContainer>
-        <Styled.LoginFormSubmitInput disabled={isSubmitting} type="submit" />
-      </Styled.LoginFormButtonContainer>
-    </Styled.LoginFormWrapper>
+      </fieldset>
+      <div className="flex flex-1 justify-end items-end ">
+        <InputSubmit disabled={isSubmitting} type="submit" />
+      </div>
+    </form>
   );
 };

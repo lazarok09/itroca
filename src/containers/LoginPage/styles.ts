@@ -2,22 +2,9 @@
 
 import styled, { css } from "styled-components";
 
-export const LoginPageContainerWrapper = styled.main`
-  ${() => css`
-    display: flex;
-    justify-content: center;
-    margin-top: 3.8rem;
-  `}
-`;
 
-export const LoginCard = styled.div`
-  ${() => css`
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    box-shadow: 0 0.5rem 1rem #00000026;
-    height: min-content;
-  `}
-`;
+
+
 
 export const LoginCardItems = styled.div`
   ${({ theme }) => css`
