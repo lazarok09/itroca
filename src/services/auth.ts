@@ -33,7 +33,7 @@ export const authorizeUser = async ({
     method: "POST",
     body: JSON.stringify(body),
   };
-  const response = await fetch(`${API_URL}/signin`, options);
+  const response = await fetch(`${API_URL}/auth/signin`, options);
   const data: ITrocarUserCredentials = await response.json();
   return data;
 };

@@ -6,7 +6,24 @@ import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { InputSubmit } from "../SubmitInput";
-import { Input } from "../Input";
+const inputClass = String(`   border
+    border-solid
+  border-gray-400
+    rounded-md
+    py-4 px-3.5
+    w-64
+    h-14
+    bg-transparent
+    text-base
+    placeholder:capitalize
+    focus-visible:outline-blue-500
+    focus-visible:border-none
+    focus:w-64
+    focus:h-14
+    autofill:bg-transparent
+    autofill:text-black
+    autofill:shadow-black
+    font-sans`);
 
 type Inputs = {
   useremail: string;
@@ -18,17 +35,16 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     watch,
-    
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
   const session = useSession();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
-      const response = await submitLogin(data);
+      const response = await submitLogin(inputs);
       if (response?.error) {
         toast.error(`Login ou senha inválidos`, {
           className: "toast-custom-icon",
-          toastId: `error-${data.useremail}`,
+          toastId: `error-${inputs.useremail}`,
           autoClose: 1500,
         });
         resolve(true);
@@ -36,7 +52,7 @@ export const LoginForm = () => {
       if (response?.ok) {
         toast.success(`Bem vindo(a) de volta`, {
           className: "toast-custom-icon",
-          toastId: `success-${data.useremail}`,
+          toastId: `success-${inputs.useremail}`,
           autoClose: 1500,
         });
         reject({
@@ -51,28 +67,30 @@ export const LoginForm = () => {
   }
   return (
     <form
+      onSubmit={handleSubmit(onSubmit)}
       className="
     flex
     flex-col
     gap-6
     "
-      onSubmit={handleSubmit(onSubmit)}
     >
       <fieldset className="flex flex-col gap-5 border-none">
-        <Input
+        <input
           id="email"
           type="email"
           placeholder="Email"
           required
           {...register("useremail")}
+          className={inputClass}
         />
 
-        <Input
+        <input
           id="password"
           type="password"
           placeholder="Senha"
           required
           {...register("password")}
+          className={inputClass}
         />
       </fieldset>
       <div className="flex flex-1 justify-end items-end ">

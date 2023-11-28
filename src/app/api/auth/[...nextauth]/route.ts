@@ -22,7 +22,6 @@ const handler = NextAuth({
       },
       // @ts-ignore
       async authorize(credentials, req) {
-        console.log("🚀 ~ file: route.ts:25 ~ authorize ~ credentials:", credentials)
         // Add logic here to look up the user from the credentials supplied
 
         if (!credentials?.password || !credentials.useremail) return null;
