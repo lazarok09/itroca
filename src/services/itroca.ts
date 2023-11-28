@@ -1,4 +1,3 @@
-import { Session } from "next-auth";
 import { signIn } from "next-auth/react";
 
 export const submitLogin = async ({
