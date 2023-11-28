@@ -1,7 +1,6 @@
 import { ProductCard } from "@/components/ProductCard";
+import { API_URL } from "@/services/itroca";
 import { Suspense } from "react";
-
-const API_URL = process.env.API_URL;
 
 export async function ProductsContainer() {
   if (!API_URL) throw new Error("API_URL env not founded");

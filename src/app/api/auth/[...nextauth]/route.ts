@@ -22,6 +22,7 @@ const handler = NextAuth({
       },
       // @ts-ignore
       async authorize(credentials, req) {
+        console.log("🚀 ~ file: route.ts:25 ~ authorize ~ credentials:", credentials)
         // Add logic here to look up the user from the credentials supplied
 
         if (!credentials?.password || !credentials.useremail) return null;
@@ -30,16 +31,15 @@ const handler = NextAuth({
           email: credentials?.useremail,
           password: credentials?.password,
         });
-        
-        const isValidUser =
-          data?.token && data?.shopkeeper.name && data?.shopkeeper.email;
+
+        const isValidUser = data?.email;
 
         if (isValidUser) {
           // Any object returned will be saved in `user` property of the JWT
           return {
             token: data.token,
-            name: data.shopkeeper.name,
-            email: data.shopkeeper.email,
+            name: data.name,
+            email: data.email,
           };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.

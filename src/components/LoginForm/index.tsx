@@ -18,7 +18,7 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     watch,
-
+    
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
   const session = useSession();

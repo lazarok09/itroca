@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: "http2.mlstatic.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        pathname: "/**",
+      },
     ],
   },
 };

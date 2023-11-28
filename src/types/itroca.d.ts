@@ -1,20 +1,13 @@
 declare interface iTrocaUser {
-  message: string;
+  id: number;
+  email: string;
+  name: string;
+  age: number;
+  address: string;
+}
+declare interface ITrocarUserCredentials extends iTrocaUser {
+  hash: string;
   token: string;
-  shopkeeper: {
-    id: 811;
-    instagram: string;
-    name: string;
-    email: string;
-    phone: string;
-    email_verified_at: string;
-    phone_verified_at: string;
-    state: string;
-    city: string;
-    created_at: string;
-    updated_at: string;
-    deleted_at: null;
-  };
 }
 
 declare interface ITrocaProduct {

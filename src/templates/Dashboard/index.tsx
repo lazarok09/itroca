@@ -5,13 +5,24 @@ import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
 import { getServerSession } from "next-auth";
 import { DashboardUser } from "@/components/DashBoardUser";
+import { getUsers } from "@/services/itroca";
 
 export const Dashboard = async () => {
   const session = await getServerSession();
+  const users = await getUsers();
   return (
     <>
       <Header />
-      <main
+      <main>
+        <div className="flex ">
+          <div className="pl-4">
+            <DashboardUser
+              user={users.find((user) => user.email === session?.user.email)}
+            />
+          </div>
+        </div>
+      </main>
+      <header
         className="
         min-h-screen 
         flex
@@ -23,11 +34,9 @@ export const Dashboard = async () => {
     "
       >
         <LogoImage />
-        <Heading>
-          Bem vindo
-          <DashboardUser> {session?.user?.name} </DashboardUser>
-        </Heading>
-      </main>
+
+        <Heading>Bem vindo</Heading>
+      </header>
       <Footer />
     </>
   );
