@@ -16,3 +16,10 @@ declare interface iTrocaUser {
     deleted_at: null;
   };
 }
+
+declare interface ITrocaProduct {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+}

@@ -4,6 +4,7 @@ import { SignOutButton } from "../SignOutButton";
 import { SignInButton } from "../SignInButton";
 import { DashBoardButton } from "../DashBoardButton";
 import { HeaderLink } from "../HeaderLink";
+import { ProductsButton } from "../ProductsButton";
 
 export const Header = () => {
   return (
@@ -30,6 +31,7 @@ export const Header = () => {
           <Link href={"/"}>Inicio</Link>
         </HeaderLink>
         <DashBoardButton />
+        <ProductsButton />
         <SignInButton />
         <SignOutButton />
       </nav>
