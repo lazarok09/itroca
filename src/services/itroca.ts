@@ -29,3 +29,13 @@ export const getUsers = async () => {
   const data: iTrocaUser[] = await response.json();
   return data;
 };
+export const getUser = async ({ token, id }: { token: string; id: string }) => {
+  const options: RequestInit = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(`${API_URL}/user/${id}`, options);
+  const data: iTrocaUser[] = await response.json();
+  return data;
+};
