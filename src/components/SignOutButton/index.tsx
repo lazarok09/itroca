@@ -1,13 +1,14 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { signOut } from "../../services/auth";
 import { useSession } from "../../hooks/session";
 
 import { HeaderLink } from "../HeaderLink";
 
 export const SignOutButton = () => {
   const handleClick = () => {
-    signOut();
+    // TODO: finish signout handler
+    signOut({ token: "" });
   };
   const { session } = useSession();
 

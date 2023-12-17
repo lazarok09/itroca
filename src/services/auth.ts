@@ -1,10 +1,9 @@
-import { Session } from "next-auth";
 import { redirect } from "next/navigation";
 import React from "react";
 import { API_URL } from "./itroca";
 
 type DashBoardGuardProps = {
-  session: Session | null;
+  session: any;
   children: React.ReactNode;
 };
 export const DashBoardGuard = ({ children, session }: DashBoardGuardProps) => {
@@ -33,8 +32,11 @@ export const authorizeUser = async ({
     method: "POST",
     body: JSON.stringify(body),
   };
-  const LOCAL_API = `api`;
+  const LOCAL_API = `api/auth/signin`;
   const response = await fetch(`${LOCAL_API}`, options);
   const data: ITrocarUserCredentials = await response.json();
   return data;
+};
+export const signOut = ({ token }: { token: string }) => {
+  return new Promise((resolve) => resolve(true));
 };
