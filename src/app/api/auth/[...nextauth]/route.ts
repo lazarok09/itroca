@@ -39,6 +39,7 @@ const handler = NextAuth({
             token: data.token,
             name: data.name,
             email: data.email,
+            id: data.id,
           };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
