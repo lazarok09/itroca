@@ -1,13 +1,15 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useSession } from "../../hooks/session";
+
 import { HeaderLink } from "../HeaderLink";
 
 export const SignOutButton = () => {
   const handleClick = () => {
     signOut();
   };
-  const session = useSession();
+  const { session } = useSession();
 
   if (session.status !== "authenticated") return null;
 

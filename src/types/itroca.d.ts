@@ -6,6 +6,9 @@ declare interface iTrocaUser {
   address: string;
 }
 declare interface ITrocarUserCredentials extends iTrocaUser {
+  token: string;
+}
+declare interface ITrocarUserCredentialsSignUp extends iTrocaUser {
   hash: string;
   token: string;
 }

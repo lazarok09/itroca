@@ -1,12 +1,13 @@
 "use client";
-import { getUsers } from "@/services/itroca";
-import { useSession } from "next-auth/react";
+
+import { useSession } from "../../hooks/session";
+
 import Image from "next/image";
-import { useEffect } from "react";
 
 export const DashboardUser = () => {
-  const session = useSession();
-  const user = session.data?.user;
+  const { session } = useSession();
+  const user = session?.user;
+  console.log("🚀 ~ file: index.tsx:10 ~ DashboardUser ~ user:", user);
 
   if (!user) return <span>Usuário não encontrado</span>;
   return (

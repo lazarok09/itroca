@@ -1,11 +1,12 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useSession } from "../../hooks/session";
+
 import Link from "next/link";
 import { HeaderLink } from "../HeaderLink";
 
 export const SignInButton = () => {
-  const session = useSession();
+  const { session } = useSession();
 
   if (session.status === "authenticated") return null;
 

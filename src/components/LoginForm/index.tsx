@@ -3,9 +3,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { submitLogin } from "@/services/itroca";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { InputSubmit } from "../SubmitInput";
+import { useContext } from "react";
+import { CustomSessionContext } from "@/context/Session/context";
+import { redirect } from "next/navigation";
+
 const inputClass = String(`   border
     border-solid
   border-gray-400
@@ -37,28 +39,35 @@ export const LoginForm = () => {
     watch,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
-  const session = useSession();
+
+  const { session, setSession } = useContext(CustomSessionContext);
+
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
-      const response = await submitLogin(inputs);
-      if (response?.error) {
+      try {
+        const data = await submitLogin(inputs);
+        if (data) {
+          toast.success(`Bem vindo(a) de volta`, {
+            className: "toast-custom-icon",
+            toastId: `success-${inputs.useremail}`,
+            autoClose: 1500,
+          });
+          //TODO: OPTIONAL HASH
+          setSession({
+            user: data,
+            accessToken: data.token,
+            status: "authenticated",
+          });
+
+          resolve(data);
+        }
+      } catch (e) {
         toast.error(`Login ou senha inválidos`, {
           className: "toast-custom-icon",
           toastId: `error-${inputs.useremail}`,
           autoClose: 1500,
         });
-        resolve(true);
-      }
-      if (response?.ok) {
-        toast.success(`Bem vindo(a) de volta`, {
-          className: "toast-custom-icon",
-          toastId: `success-${inputs.useremail}`,
-          autoClose: 1500,
-        });
-        reject({
-          error: response?.error,
-          status: response?.status,
-        });
+        reject({ message: e, error: e });
       }
     });
   };
