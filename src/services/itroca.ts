@@ -20,7 +20,7 @@ export const getUsers = async () => {
   const data: iTrocaUser[] = await response.json();
   return data;
 };
-export const getUser = async ({ token, id }: { token: string; id: string }) => {
+export const getUser = async ({ token, id }: { token: string; id: number }) => {
   const options: RequestInit = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -28,5 +28,19 @@ export const getUser = async ({ token, id }: { token: string; id: string }) => {
   };
   const response = await fetch(`${API_URL}/user/${id}`, options);
   const data: iTrocaUser[] = await response.json();
+  return data;
+};
+export const getProducts = async ({
+  token,
+}: {
+  token: string;
+}): Promise<ITrocaProduct[] | []> => {
+  const options: RequestInit = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(`${API_URL}/products`, options);
+  const data: ITrocaProduct[] = await response.json();
   return data;
 };
