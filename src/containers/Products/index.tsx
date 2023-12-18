@@ -2,7 +2,7 @@
 import { Loading } from "@/components/Loading";
 import { ProductCard } from "@/components/ProductCard";
 import { useSession } from "@/hooks/session";
-import { API_URL, getProducts, getUser } from "@/services/itroca";
+import { getProducts } from "@/services/itroca";
 import { Suspense } from "react";
 
 export async function ProductsContainer() {

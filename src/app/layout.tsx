@@ -6,6 +6,7 @@ import ToastProvider from "./toast";
 
 import "./global.css";
 import QueryProvider from "./query";
+import { CustomSessionProvider } from "@/context/Session";
 
 export default async function RootLayout({
   children,
@@ -15,9 +16,11 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <QueryProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </QueryProvider>
+        <CustomSessionProvider>
+          <QueryProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </QueryProvider>
+        </CustomSessionProvider>
       </body>
     </html>
   );
