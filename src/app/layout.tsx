@@ -5,6 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 import ToastProvider from "./toast";
 
 import "./global.css";
+import QueryProvider from "./query";
 
 export default async function RootLayout({
   children,
@@ -14,7 +15,9 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <ToastProvider>{children}</ToastProvider>
+        <QueryProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </QueryProvider>
       </body>
     </html>
   );
