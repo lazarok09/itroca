@@ -7,7 +7,6 @@ import Image from "next/image";
 export const DashboardUser = () => {
   const { session } = useSession();
   const user = session?.user;
-  console.log("🚀 ~ file: index.tsx:10 ~ DashboardUser ~ user:", user);
 
   if (!user) return <span>Usuário não encontrado</span>;
   return (
