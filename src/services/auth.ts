@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import React from "react";
-import { API_URL } from "./itroca";
 
 type DashBoardGuardProps = {
   session: any;

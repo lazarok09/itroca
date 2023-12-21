@@ -41,7 +41,6 @@ export const LoginForm = () => {
   } = useForm<Inputs>();
 
   const { session, setSession } = useContext(CustomSessionContext);
-
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -51,12 +50,6 @@ export const LoginForm = () => {
             className: "toast-custom-icon",
             toastId: `success-${inputs.useremail}`,
             autoClose: 1500,
-          });
-          //TODO: OPTIONAL HASH
-          setSession({
-            user: data,
-            accessToken: data.token,
-            status: "authenticated",
           });
 
           resolve(data);

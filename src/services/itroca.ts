@@ -15,21 +15,12 @@ export const submitLogin = async ({
   return result;
 };
 
-export const getUsers = async () => {
-  const response = await fetch(`${API_URL}/users`);
-  const data: iTrocaUser[] = await response.json();
+export const getUser = async (): Promise<iTrocaUser> => {
+  const response = await fetch(`/api/auth/signin`);
+  const data: iTrocaUser = await response.json();
   return data;
 };
-export const getUser = async ({ token, id }: { token: string; id: number }) => {
-  const options: RequestInit = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const response = await fetch(`${API_URL}/user/${id}`, options);
-  const data: iTrocaUser[] = await response.json();
-  return data;
-};
+
 export const getProducts = async ({
   token,
 }: {

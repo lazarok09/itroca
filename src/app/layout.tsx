@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ["latin"] });
 import ToastProvider from "./toast";
 
 import "./global.css";
-import QueryProvider from "./query";
 import { CustomSessionProvider } from "@/context/Session";
+import CookieProvider from "./cookies";
 
 export default async function RootLayout({
   children,
@@ -16,11 +16,11 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <CustomSessionProvider>
-          <QueryProvider>
+        <CookieProvider>
+          <CustomSessionProvider>
             <ToastProvider>{children}</ToastProvider>
-          </QueryProvider>
-        </CustomSessionProvider>
+          </CustomSessionProvider>
+        </CookieProvider>
       </body>
     </html>
   );

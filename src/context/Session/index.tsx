@@ -1,20 +1,12 @@
 "use client";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSessionContext, DEFAULT_VALUES } from "./context";
-import {
-  saveSessionInLocalStorage,
-  useSessionInLocalStorage,
-} from "@/hooks/session";
+
+import { getUser } from "@/services/itroca";
 
 interface Session {
   user: iTrocaUser;
-  accessToken: string;
   status: "pending" | "authenticated";
 }
 
@@ -28,24 +20,25 @@ export const CustomSessionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { session: sessionInLocalStorage } = useSessionInLocalStorage();
-
   // init with storage if its possible
   const [session, setSession] = useState<CustomSession["session"]>(
-    sessionInLocalStorage
+    DEFAULT_VALUES.session
   );
 
-  // if updated session, save to local storage that update
   useEffect(() => {
-    if (session.status === "authenticated") {
-      saveSessionInLocalStorage({ session });
+    async function getSessionUser() {
+      try {
+        const data = await getUser();
+        setSession({
+          status: "authenticated",
+          user: data,
+        });
+      } catch (e) {
+        console.error(e);
+      }
     }
-  }, [session]);
-
-  useEffect(() => {
-    setSession(sessionInLocalStorage);
-  }, [sessionInLocalStorage]);
-
+    getSessionUser();
+  }, []);
   return (
     <CustomSessionContext.Provider
       value={{
