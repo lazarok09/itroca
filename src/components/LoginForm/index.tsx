@@ -1,7 +1,7 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { submitLogin } from "@/services/itroca";
+import { signIn } from "@/services/itroca";
 import { toast } from "react-toastify";
 import { InputSubmit } from "../SubmitInput";
 import { useContext } from "react";
@@ -44,7 +44,16 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await submitLogin(inputs);
+        const data = await signIn({
+          email: inputs.useremail,
+          password: inputs.password,
+        });
+        //TODO: OPTIONAL HASH
+        setSession({
+          user: data,
+          status: "authenticated",
+        });
+
         if (data) {
           toast.success(`Bem vindo(a) de volta`, {
             className: "toast-custom-icon",

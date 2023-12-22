@@ -25,12 +25,13 @@ export async function POST(req: Request, res: NextApiResponse<iTrocaUser>) {
   // TODO: receive the cookie expiration from backend
   const dateNow = new Date();
   const oneHourFromNow = new Date(dateNow);
-  oneHourFromNow.setHours(dateNow.getHours());
+  oneHourFromNow.setHours(dateNow.getHours() + 1);
 
   cookies().set(AUTH_COOKIE_NAME, user.token, {
     httpOnly: true,
-    expires: oneHourFromNow.getMilliseconds(),
+    expires: oneHourFromNow.getTime(),
     secure: true,
+    sameSite: true,
   });
 
   return new Response(JSON.stringify(user), {

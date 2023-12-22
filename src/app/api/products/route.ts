@@ -1,12 +1,10 @@
 "use server";
-
-const API_URL = process.env.API_URL;
-
-import { getTokenHandler } from "@/helpers/server";
-
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+import { getTokenHandler } from "@/helpers/server";
+const API_URL = process.env.API_URL;
+
+export async function GET(reqreq: NextRequest, res: NextResponse) {
   const tokenHandlerInfo = await getTokenHandler();
   const error = tokenHandlerInfo.error;
   const cookie = tokenHandlerInfo.cookie;
@@ -21,7 +19,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       },
     };
 
-    const response = await fetch(`${API_URL}/user`, options);
+    const response = await fetch(`${API_URL}/products`, options);
     const data: iTrocaUser = await response.json();
 
     return new Response(JSON.stringify(data), {
