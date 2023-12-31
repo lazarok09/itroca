@@ -7,8 +7,11 @@ import Image from "next/image";
 export const DashboardUser = () => {
   const { session } = useSession();
   const user = session?.user;
+  if (session.status === "pending") return <span>Carregando...</span>;
 
-  if (!user) return <span>Usuário não encontrado</span>;
+  if (session.status === "notauthenticated")
+    return <span>Volte a página de login</span>;
+
   return (
     <div className="relative flex p-50 justify-center items-center gap-3 ">
       <Image

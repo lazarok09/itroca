@@ -7,10 +7,13 @@ import { InputSubmit } from "../SubmitInput";
 import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
+import { useCookies } from "react-cookie";
+import { AUTH_COOKIE_NAME } from "@/hooks/session";
 
-const inputClass = String(`   border
+const inputClass = String(`
+    border
     border-solid
-  border-gray-400
+    border-gray-400
     rounded-md
     py-4 px-3.5
     w-64
@@ -41,6 +44,8 @@ export const LoginForm = () => {
   } = useForm<Inputs>();
 
   const { session, setSession } = useContext(CustomSessionContext);
+  const [, setCookies] = useCookies([AUTH_COOKIE_NAME]);
+  
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
       try {

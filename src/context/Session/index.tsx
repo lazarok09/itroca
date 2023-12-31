@@ -4,10 +4,12 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSessionContext, DEFAULT_VALUES } from "./context";
 
 import { getUser } from "@/services/itroca";
+import { useCookies } from "react-cookie";
+import { AUTH_COOKIE_NAME } from "@/hooks/session";
 
 interface Session {
   user: iTrocaUser;
-  status: "pending" | "authenticated";
+  status: "pending" | "authenticated" | "notauthenticated";
 }
 
 export interface CustomSession {
@@ -24,15 +26,28 @@ export const CustomSessionProvider = ({
   const [session, setSession] = useState<CustomSession["session"]>(
     DEFAULT_VALUES.session
   );
+  const [cookies] = useCookies([AUTH_COOKIE_NAME]);
+  const token = cookies.itrocatoken;
 
   useEffect(() => {
     async function getSessionUser() {
       try {
-        const data = await getUser();
-        setSession({
-          status: "authenticated",
-          user: data,
-        });
+        if (token) {
+          const data = await getUser({ token });
+          if (data.id && data.email) {
+            setSession({
+              status: "authenticated",
+              user: data,
+            });
+          } else {
+            setSession({
+              status: "notauthenticated",
+              user: data,
+            });
+          }
+        } else {
+          console.error("MISSING TOKEN IN SESSION PROVIDER");
+        }
       } catch (e) {
         console.error(e);
       }

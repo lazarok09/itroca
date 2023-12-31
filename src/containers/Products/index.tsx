@@ -1,31 +1,47 @@
+"use client";
+
 import { ErrorMessage } from "@/components/Error";
 import { Loading } from "@/components/Loading";
 import { ProductCard } from "@/components/ProductCard";
-import { useSession } from "@/hooks/session";
+import { AUTH_COOKIE_NAME } from "@/hooks/session";
 import { getProducts } from "@/services/itroca";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
-export async function ProductsContainer() {
-  try {
-    const data = await getProducts();
-    if (data) {
-      return JSON.stringify(data, null, 2);
-    }
-    return <h1>No products baby</h1>;
-  } catch (e) {
-    console.error(e);
-    return <ErrorMessage>{JSON.stringify(e)}</ErrorMessage>;
+export function ProductsContainer() {
+  const [cookies] = useCookies([AUTH_COOKIE_NAME]);
+  const [products, setProducts] = useState<ITrocaProduct[]>();
+  const [error, setError] = useState();
+  const token = cookies.itrocatoken;
+  
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts({ token });
+        setProducts(data);
+      } catch (e: any) {
+        setError(e?.message);
+      }
+    };
+
+    fetchProducts();
+  }, [token]);
+
+  if (products && !products?.length) {
+    <h1>Parece que estamos sem produtos para esse usuário</h1>;
   }
 
-  // if (!data.length) {
-  //   <h1>Parece que estamos sem produtos para esse usuário</h1>;
-  // }
+  if (!error) {
+    <ErrorMessage>
+      Parece que ocorreu um erro durante a busca de produtos
+    </ErrorMessage>;
+  }
 
-  // return (
-  //   <Suspense fallback={<Loading />}>
-  //     {data?.map((product, index) => {
-  //       return <ProductCard key={index} {...product} />;
-  //     })}
-  //   </Suspense>
-  // );
+  return (
+    <Suspense fallback={<Loading />}>
+      {products?.map((product, index) => {
+        return <ProductCard key={index} {...product} />;
+      })}
+    </Suspense>
+  );
 }

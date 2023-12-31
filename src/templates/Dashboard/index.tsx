@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
-import { DashboardUser } from "@/components/DashBoardUser";
+import { DashboardUser } from "@/containers/DashBoardUser";
 
 export const Dashboard = async () => {
   return (
