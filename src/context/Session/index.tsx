@@ -26,27 +26,21 @@ export const CustomSessionProvider = ({
   const [session, setSession] = useState<CustomSession["session"]>(
     DEFAULT_VALUES.session
   );
-  const [cookies] = useCookies([AUTH_COOKIE_NAME]);
-  const token = cookies.itrocatoken;
 
   useEffect(() => {
     async function getSessionUser() {
       try {
-        if (token) {
-          const data = await getUser({ token });
-          if (data.id && data.email) {
-            setSession({
-              status: "authenticated",
-              user: data,
-            });
-          } else {
-            setSession({
-              status: "notauthenticated",
-              user: data,
-            });
-          }
+        const data = await getUser();
+        if (data.id && data.email) {
+          setSession({
+            status: "authenticated",
+            user: data,
+          });
         } else {
-          console.error("MISSING TOKEN IN SESSION PROVIDER");
+          setSession({
+            status: "notauthenticated",
+            user: data,
+          });
         }
       } catch (e) {
         console.error(e);
