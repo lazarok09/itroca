@@ -1,7 +1,5 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
-interface AuthorizedRequest {
-  token: string;
-}
+
 export const signIn = async ({
   email,
   password,
@@ -17,6 +15,7 @@ export const signIn = async ({
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: 'include',
     method: "POST",
     body: JSON.stringify(body),
   };

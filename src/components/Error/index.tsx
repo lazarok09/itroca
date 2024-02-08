@@ -1,10 +1,10 @@
-export const ErrorMessage = (error: any) => {
+export const ErrorMessage = ({ error }: { error: string }) => {
   return (
     <section>
       <h1>Erro :/</h1>
       <details>
         <summary>Detalhes</summary>
-        {error?.message}
+        {error}
       </details>
     </section>
   );

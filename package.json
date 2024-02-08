@@ -15,7 +15,6 @@
     "@types/react-query": "^1.2.9",
     "next": "14.0.1",
     "react": "^18",
-    "react-cookie": "^6.1.1",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
     "react-toastify": "^9.1.3"
