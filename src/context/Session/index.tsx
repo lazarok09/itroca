@@ -4,8 +4,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSessionContext, DEFAULT_VALUES } from "./context";
 
 import { getUser } from "@/services/itroca";
-import { useCookies } from "react-cookie";
-import { AUTH_COOKIE_NAME } from "@/hooks/session";
 
 interface Session {
   user: iTrocaUser;
