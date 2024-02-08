@@ -15,7 +15,8 @@ export const signIn = async ({
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: 'include',
+    credentials: "include",
+    cache: "no-cache",
     method: "POST",
     body: JSON.stringify(body),
   };

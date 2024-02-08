@@ -19,9 +19,11 @@ export const ProductCard = ({ id, image, name, price }: ProductCardProps) => {
 
       <div
         className=" w-28 font-mono min-h-40 mr-4 
-    flex flex-col gap-6 justify-around
-      "
+        flex flex-col gap-6 justify-around
+        
+        "
       >
+        <span>{id}</span>
         <h3
           className="line-clamp-2 cursor-text font-sans
         text-lg
