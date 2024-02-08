@@ -1,8 +1,8 @@
-import { InputHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-export const InputSubmit = (props: InputHTMLAttributes<HTMLInputElement>) => {
+export const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <input
+    <button
       className="  
           text-white
             my-2
@@ -10,6 +10,8 @@ export const InputSubmit = (props: InputHTMLAttributes<HTMLInputElement>) => {
           rounded-lg text-base cursor-pointer
         disabled:bg-red-500"
       {...props}
-    />
+    >
+      {props.children}
+    </button>
   );
 };

@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { signIn } from "@/services/itroca";
 import { toast } from "react-toastify";
-import { InputSubmit } from "../SubmitInput";
+import { Button } from "../SubmitInput";
 import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
@@ -40,12 +40,14 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isLoading },
   } = useForm<Inputs>();
+
+  const canSubmit = !isLoading && !isSubmitting;
 
   const { session, setSession } = useContext(CustomSessionContext);
   const [, setCookies] = useCookies([AUTH_COOKIE_NAME]);
-  
+
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -71,7 +73,7 @@ export const LoginForm = () => {
       } catch (e) {
         toast.error(`Login ou senha inválidos`, {
           className: "toast-custom-icon",
-          toastId: `error-${inputs.useremail}`,
+          toastId: `error-${e}`,
           autoClose: 1500,
         });
         reject({ message: e, error: e });
@@ -110,7 +112,9 @@ export const LoginForm = () => {
         />
       </fieldset>
       <div className="flex flex-1 justify-end items-end ">
-        <InputSubmit disabled={isSubmitting} type="submit" />
+        <Button disabled={!canSubmit} type="submit">
+          Enviar
+        </Button>
       </div>
     </form>
   );
