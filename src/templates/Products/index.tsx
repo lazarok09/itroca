@@ -8,19 +8,11 @@ export const Products = () => {
   return (
     <>
       <Header />
-      <div
-        className="
-         min-h-screen
-         text-bg flex flex-1
-         grid-cols-3
-      "
-      >
-        <main className="w-70 p-4 ">
-          <ProductsContainer />
-        </main>
-      </div>
 
-      <Footer />
+      <main className="p-4 min-h-max">
+        <ProductsContainer />
+      </main>
+        <Footer />
     </>
   );
 };

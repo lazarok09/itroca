@@ -5,7 +5,7 @@ import { Loading } from "@/components/Loading";
 import { ProductCard } from "@/components/ProductCard";
 
 import { getProducts } from "@/services/itroca";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function ProductsContainer() {
   const [products, setProducts] = useState<ITrocaProduct[]>();
@@ -33,10 +33,28 @@ export function ProductsContainer() {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
-      {products?.map((product, index) => {
-        return <ProductCard key={index} {...product} />;
-      })}
-    </Suspense>
+    <>
+      <section>
+        <div className="mb-5">
+          <h1>Bem vindo a tela de produtos</h1>
+        </div>
+
+        {!products ? (
+          <div className="flex flex-grow basis-full flex-wrap flex-col justify-center justify-items-center">
+            <Loading />
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-5">
+            {products?.map((product, index) => {
+              return (
+                <article key={index}>
+                  <ProductCard {...product} />
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </section>
+    </>
   );
 }
