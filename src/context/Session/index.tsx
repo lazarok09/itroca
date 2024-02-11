@@ -42,6 +42,10 @@ export const CustomSessionProvider = ({
         }
       } catch (e) {
         console.error(e);
+         setSession({
+           status: "notauthenticated",
+           user: DEFAULT_VALUES.session.user,
+         });
       }
     }
     getSessionUser();
