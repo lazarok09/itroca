@@ -4,9 +4,9 @@ type Props = {
 };
 export const ErrorMessage = ({ label, error }: Props) => {
   return (
-    <details>
+    <details className="flex flex-col flex-wrap">
       <summary>{label}</summary>
-      {error}
+      <p>{error}</p>
     </details>
   );
 };

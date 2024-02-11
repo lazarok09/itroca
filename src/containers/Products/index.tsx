@@ -30,11 +30,6 @@ const Products = () => {
     <h1>Parece que estamos sem produtos para esse usuário</h1>;
   }
 
-  if (error) {
-    return (
-      <ErrorMessage label="Parece que encontramos um erro" error={error} />
-    );
-  }
   return !products ? (
     <div className="flex flex-grow basis-full flex-wrap flex-col justify-center justify-items-center">
       <Loading />
@@ -62,7 +57,9 @@ export function ProductsContainer() {
           <h1>Bem vindo a tela de produtos</h1>
           {session.status === "authenticated" && Products()}
           {session.status !== "notauthenticated" && <Loading />}
-          {session.status === "notauthenticated" && <p>Volte para a página de login.</p>}
+          {session.status === "notauthenticated" && (
+            <p>Volte para a página de login.</p>
+          )}
         </div>
       </section>
     </>
