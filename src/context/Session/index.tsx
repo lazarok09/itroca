@@ -4,15 +4,16 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSessionContext, DEFAULT_VALUES } from "./context";
 
 import { getUser } from "@/services/itroca";
+import { setServerSideSession } from "@/lib/session";
 
-interface Session {
+export type iTrocaSession = {
   user: iTrocaUser;
   status: "pending" | "authenticated" | "notauthenticated";
-}
+};
 
 export interface CustomSession {
-  session: Session;
-  setSession: Dispatch<SetStateAction<Session>>;
+  session: iTrocaSession;
+  setSession: Dispatch<SetStateAction<iTrocaSession>>;
 }
 
 export const CustomSessionProvider = ({
@@ -34,18 +35,30 @@ export const CustomSessionProvider = ({
             status: "authenticated",
             user: data,
           });
+          setServerSideSession({
+            status: "authenticated",
+            user: data,
+          });
         } else {
           setSession({
+            status: "notauthenticated",
+            user: data,
+          });
+          setServerSideSession({
             status: "notauthenticated",
             user: data,
           });
         }
       } catch (e) {
         console.error(e);
-         setSession({
-           status: "notauthenticated",
-           user: DEFAULT_VALUES.session.user,
-         });
+        setSession({
+          status: "notauthenticated",
+          user: DEFAULT_VALUES.session.user,
+        });
+        setServerSideSession({
+          status: "notauthenticated",
+          user: DEFAULT_VALUES.session.user,
+        });
       }
     }
     getSessionUser();
