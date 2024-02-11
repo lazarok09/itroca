@@ -9,7 +9,8 @@ import { getProducts } from "@/services/itroca";
 
 import { useEffect, useState } from "react";
 
-const Products = () => {
+export function ProductsContainer() {
+  const { session } = useSession();
   const [products, setProducts] = useState<ITrocaProduct[]>();
   const [error, setError] = useState();
 
@@ -30,32 +31,28 @@ const Products = () => {
     <h1>Parece que estamos sem produtos para esse usuário</h1>;
   }
 
-  return !products ? (
-    <div className="flex flex-grow basis-full flex-wrap flex-col justify-center justify-items-center">
-      <Loading />
-    </div>
-  ) : (
-    <div className="flex flex-wrap gap-5">
-      {products?.map((product, index) => {
-        return (
-          <article key={index}>
-            <ProductCard {...product} />
-          </article>
-        );
-      })}
-    </div>
-  );
-};
-
-export function ProductsContainer() {
-  const { session } = useSession();
-
   return (
     <>
       <section>
         <div className="mb-5">
           <h1>Bem vindo a tela de produtos</h1>
-          {session.status === "authenticated" && Products()}
+          {session.status === "authenticated" ? (
+            !products ? (
+              <div className="flex flex-grow basis-full flex-wrap flex-col justify-center justify-items-center">
+                <Loading />
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-5">
+                {products?.map((product, index) => {
+                  return (
+                    <article key={index}>
+                      <ProductCard {...product} />
+                    </article>
+                  );
+                })}
+              </div>
+            )
+          ) : null}
           {session.status !== "notauthenticated" && <Loading />}
           {session.status === "notauthenticated" && (
             <p>Volte para a página de login.</p>
