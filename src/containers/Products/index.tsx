@@ -3,11 +3,13 @@
 import { ErrorMessage } from "@/components/Error";
 import { Loading } from "@/components/Loading";
 import { ProductCard } from "@/components/ProductCard";
+import { useSession } from "@/hooks/session";
 
 import { getProducts } from "@/services/itroca";
 import { useEffect, useState } from "react";
 
 export function ProductsContainer() {
+  const {} = useSession()
   const [products, setProducts] = useState<ITrocaProduct[]>();
   const [error, setError] = useState();
 
@@ -28,8 +30,8 @@ export function ProductsContainer() {
     <h1>Parece que estamos sem produtos para esse usuário</h1>;
   }
 
-  if (!error) {
-    <ErrorMessage error="Parece que ocorreu um erro durante a busca de produtos" />;
+  if (error) {
+    return <ErrorMessage label="Parece que encontramos um erro" error={error}/>;
   }
 
   return (

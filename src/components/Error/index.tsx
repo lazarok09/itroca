@@ -1,11 +1,12 @@
-export const ErrorMessage = ({ error }: { error: string }) => {
+type Props = {
+  label: string;
+  error: string;
+};
+export const ErrorMessage = ({ label, error }: Props) => {
   return (
-    <section>
-      <h1>Erro :/</h1>
-      <details>
-        <summary>Detalhes</summary>
-        {error}
-      </details>
-    </section>
+    <details>
+      <summary>{label}</summary>
+      {error}
+    </details>
   );
 };
