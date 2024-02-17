@@ -1,5 +1,8 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
+export interface ItrocaSignUpInterface
+  extends Pick<iTrocaUser, "address" | "age" | "email" | "name"> {
+  password: string;
+}
 export const signIn = async ({
   email,
   password,
@@ -22,6 +25,24 @@ export const signIn = async ({
   };
 
   const response = await fetch(`${API_URL}/auth/signin`, options);
+  const data: ITrocarUserCredentials = await response.json();
+  return data;
+};
+export const signUp = async (
+  props: ItrocaSignUpInterface
+): Promise<ITrocarUserCredentials> => {
+  const body = props;
+  const options: RequestInit = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    cache: "no-cache",
+    method: "POST",
+    body: JSON.stringify(body),
+  };
+
+  const response = await fetch(`${API_URL}/auth/signup`, options);
   const data: ITrocarUserCredentials = await response.json();
   return data;
 };
