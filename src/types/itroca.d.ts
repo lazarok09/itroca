@@ -19,3 +19,11 @@ declare interface ITrocaProduct {
   price: number;
   image: string;
 }
+declare interface GenericErrorHandler {
+  status: number;
+  message: string;
+}
+declare interface PrismaErrorHandler {
+  status: number;
+  message: string;
+}

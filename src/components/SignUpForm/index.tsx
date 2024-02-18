@@ -7,7 +7,6 @@ import { Button } from "../SubmitInput";
 import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
-import { alertTitleClasses } from "@mui/material";
 
 const inputClass = String(`
     border
@@ -68,8 +67,9 @@ export const SignUpForm = () => {
       }
       return data;
     } catch (e) {
-      console.error("🚀 ~ returnnewPromise ~ e:", e);
-      const error = `Dados inválidos ${e}`;
+      const treatedError: GenericErrorHandler | PrismaErrorHandler = e as any;
+
+      const error = `Dados inválidos: ${treatedError?.message}`;
       toast.error(error, {
         className: "toast-custom-icon",
         toastId: `error-${e}`,

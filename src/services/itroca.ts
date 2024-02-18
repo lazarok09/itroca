@@ -3,6 +3,13 @@ export interface ItrocaSignUpInterface
   extends Pick<iTrocaUser, "address" | "age" | "email" | "name"> {
   password: string;
 }
+
+async function throwIfResponseNotOk(response: Response){
+  if (!response.ok) {
+    throw await response.json();
+  }
+}
+
 export const signIn = async ({
   email,
   password,
@@ -25,6 +32,8 @@ export const signIn = async ({
   };
 
   const response = await fetch(`${API_URL}/auth/signin`, options);
+  await throwIfResponseNotOk(response);
+
   const data: ITrocarUserCredentials = await response.json();
   return data;
 };
@@ -43,6 +52,8 @@ export const signUp = async (
   };
 
   const response = await fetch(`${API_URL}/auth/signup`, options);
+  await throwIfResponseNotOk(response);
+
   const data: ITrocarUserCredentials = await response.json();
   return data;
 };
@@ -53,6 +64,7 @@ export const signOut = async (): Promise<{ token: string }> => {
     credentials: "include",
   };
   const response = await fetch(`${API_URL}/auth/signout`, options);
+  await throwIfResponseNotOk(response);
   const data: { token: string } = await response.json();
   return data;
 };
@@ -62,6 +74,7 @@ export const getUser = async (): Promise<iTrocaUser> => {
     credentials: "include",
   };
   const response = await fetch(`${API_URL}/user`, options);
+  await throwIfResponseNotOk(response);
   const data: iTrocaUser = await response.json();
   return data;
 };
@@ -76,6 +89,7 @@ export const getProducts = async ({
     ...customOptions,
   };
   const response = await fetch(`${API_URL}/products`, options);
+  await throwIfResponseNotOk(response);
   const data: ITrocaProduct[] = await response.json();
   return data;
 };

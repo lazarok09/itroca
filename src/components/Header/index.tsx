@@ -5,6 +5,7 @@ import { SignInButton } from "../SignInButton";
 import { DashBoardButton } from "../DashBoardButton";
 import { HeaderLink } from "../HeaderLink";
 import { ProductsButton } from "../ProductsButton";
+import { SignUpButton } from "../SignUpButton";
 
 export const Header = () => {
   return (
@@ -33,6 +34,7 @@ export const Header = () => {
         <DashBoardButton />
         <ProductsButton />
         <SignInButton />
+        <SignUpButton />
         <SignOutButton />
       </nav>
     </header>
