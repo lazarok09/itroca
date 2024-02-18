@@ -44,11 +44,12 @@ export const SignUpForm = () => {
   const { session, setSession } = useContext(CustomSessionContext);
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
+    const treatedAge = Number(inputs.age);
     try {
       const data = await signUp({
         email: inputs.email,
         address: inputs.address,
-        age: inputs.age,
+        age: treatedAge,
         name: inputs.name,
         password: inputs.password,
       });
