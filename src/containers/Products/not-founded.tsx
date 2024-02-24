@@ -1,7 +1,11 @@
 import { Button } from "@/components/SubmitInput";
 import Image from "next/image";
 const noDataIcon = "/no_data.svg";
-export const ProductsNotFounded = () => {
+
+type Props = {
+  handleRegisterNewProducts: () => void;
+};
+export const ProductsNotFounded = ({ handleRegisterNewProducts }: Props) => {
   return (
     <article className="flex flex-col items-center gap-4  justify-center content-center pt-24 w-full">
       <Image
@@ -13,7 +17,12 @@ export const ProductsNotFounded = () => {
       <h2>Parece que estamos sem produtos para esse usuário</h2>
 
       <div>
-        <Button className="bg-green-500 font-medium" >Cadastrar novos</Button>
+        <Button
+          onClick={handleRegisterNewProducts}
+          className="bg-green-500 font-medium"
+        >
+          Cadastrar novos
+        </Button>
       </div>
     </article>
   );

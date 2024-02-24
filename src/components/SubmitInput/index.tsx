@@ -10,7 +10,7 @@ data-[loading=true]:disabled:cursor-wait
 `;
 export const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <button {...props} className={`${defaultClass} ${props.className}`}>
+    <button {...props} className={`${defaultClass} ${props.className}`} >
       {props.children}
     </button>
   );
