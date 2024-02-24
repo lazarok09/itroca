@@ -46,36 +46,31 @@ export const LoginForm = () => {
   const { session, setSession } = useContext(CustomSessionContext);
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const data = await signIn({
-          email: inputs.useremail,
-          password: inputs.password,
-        });
-        //TODO: OPTIONAL HASH
-        setSession({
-          user: data,
-          status: "authenticated",
-        });
+    try {
+      const data = await signIn({
+        email: inputs.useremail,
+        password: inputs.password,
+      });
+      //TODO: OPTIONAL HASH
+      setSession({
+        user: data,
+        status: "authenticated",
+      });
 
-        if (data) {
-          toast.success(`Bem vindo(a) de volta`, {
-            className: "toast-custom-icon",
-            toastId: `success-${inputs.useremail}`,
-            autoClose: 1500,
-          });
-
-          resolve(data);
-        }
-      } catch (e) {
-        toast.error(`Login ou senha inválidos`, {
+      if (data) {
+        toast.success(`Bem vindo(a) de volta`, {
           className: "toast-custom-icon",
-          toastId: `error-${e}`,
+          toastId: `success-${inputs.useremail}`,
           autoClose: 1500,
         });
-        reject({ message: e, error: e });
       }
-    });
+    } catch (e) {
+      toast.error(`Login ou senha inválidos`, {
+        className: "toast-custom-icon",
+        toastId: `error-${e}`,
+        autoClose: 1500,
+      });
+    }
   };
   if (session?.status === "authenticated") {
     redirect("/dashboard");
@@ -109,7 +104,11 @@ export const LoginForm = () => {
         />
       </fieldset>
       <div className="flex flex-1 justify-end items-end ">
-        <Button disabled={!canSubmit} type="submit">
+        <Button
+          disabled={!canSubmit}
+          type="submit"
+          data-loading={!canSubmit ? true : false}
+        >
           Enviar
         </Button>
       </div>
