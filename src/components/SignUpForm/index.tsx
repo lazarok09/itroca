@@ -66,7 +66,6 @@ export const SignUpForm = () => {
           autoClose: 1500,
         });
       }
-      return data;
     } catch (e) {
       const treatedError: GenericErrorHandler | PrismaErrorHandler = e as any;
 
@@ -140,7 +139,11 @@ export const SignUpForm = () => {
         />
       </fieldset>
       <div className="flex flex-1 justify-end items-end ">
-        <Button disabled={!canSubmit} type="submit">
+        <Button
+          disabled={!canSubmit}
+          type="submit"
+          data-loading={!canSubmit ? true : false}
+        >
           Enviar
         </Button>
       </div>
