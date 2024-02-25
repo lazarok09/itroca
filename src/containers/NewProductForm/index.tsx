@@ -55,9 +55,11 @@ export const NewProductFormContainer = () => {
 
           <label>Preço</label>
           <CustomInput
-            type="text"
+            type="number"
             {...register("price")}
-            placeholder="3599,99"
+            min={100}
+            max={10000}
+            placeholder="3599.99"
             className="normal-case"
           />
           <div className="pt-2" />
