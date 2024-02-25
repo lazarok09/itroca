@@ -4,7 +4,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSessionContext, DEFAULT_VALUES } from "./context";
 
 import { getUser } from "@/services/itroca";
-import { setServerSideSession } from "@/lib/session";
 
 export type iTrocaSession = {
   user: iTrocaUser;
@@ -35,16 +34,8 @@ export const CustomSessionProvider = ({
             status: "authenticated",
             user: data,
           });
-          setServerSideSession({
-            status: "authenticated",
-            user: data,
-          });
         } else {
           setSession({
-            status: "notauthenticated",
-            user: data,
-          });
-          setServerSideSession({
             status: "notauthenticated",
             user: data,
           });
@@ -52,10 +43,6 @@ export const CustomSessionProvider = ({
       } catch (e) {
         console.error(e);
         setSession({
-          status: "notauthenticated",
-          user: DEFAULT_VALUES.session.user,
-        });
-        setServerSideSession({
           status: "notauthenticated",
           user: DEFAULT_VALUES.session.user,
         });
