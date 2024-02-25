@@ -3,9 +3,13 @@ import Image from "next/image";
 const noDataIcon = "/no_data.svg";
 
 type Props = {
+  title: string;
   handleRegisterNewProducts: () => void;
 };
-export const ProductsNotFounded = ({ handleRegisterNewProducts }: Props) => {
+export const ProductsNotFounded = ({
+  title,
+  handleRegisterNewProducts,
+}: Props) => {
   return (
     <article className="flex flex-col items-center gap-4  justify-center content-center pt-24 w-full">
       <Image
@@ -14,7 +18,7 @@ export const ProductsNotFounded = ({ handleRegisterNewProducts }: Props) => {
         height={250}
         width={250}
       />
-      <h2>Parece que estamos sem produtos para esse usuário</h2>
+      <h2>{title}</h2>
 
       <div>
         <Button
