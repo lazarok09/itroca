@@ -8,6 +8,7 @@ export interface ItrocaCreateProduct
 
 async function throwIfResponseNotOk(response: Response) {
   // TODO: add the error interfaces that problaby can come here.
+  console.error("throwIfResponseNotOk:");
   if (!response.ok) {
     throw await response.json();
   }

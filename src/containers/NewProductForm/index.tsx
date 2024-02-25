@@ -1,12 +1,40 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/SubmitInput";
 import { CustomInput } from "@/components/CustomInput";
-import { ItrocaCreateProduct } from "@/services/itroca";
+import { ItrocaCreateProduct, postProduct } from "@/services/itroca";
+import { toast } from "react-toastify";
 
 export const NewProductFormContainer = () => {
-  const { register, handleSubmit } = useForm<ItrocaCreateProduct>();
-  const onSubmit = (inputValues: ItrocaCreateProduct) => {
-    console.log("🚀 ~ onSubmit ~ inputValues:", inputValues);
+  const {
+    register,
+    handleSubmit,
+    formState: { isLoading, isSubmitting },
+  } = useForm<ItrocaCreateProduct>();
+  const canSubmit = !isLoading && !isSubmitting;
+
+  const onSubmit = async (inputs: ItrocaCreateProduct) => {
+    try {
+      const product = await postProduct({
+        body: {
+          image: inputs.image,
+          name: inputs.name,
+          price: inputs.price,
+        },
+      });
+      toast.success(`Produto criado.`, {
+        className: "toast-custom-icon",
+        toastId: `success-${product.id}`,
+        autoClose: 1500,
+      });
+    } catch (e: unknown) {
+      console.error("🚀 ~ onSubmit ~ e:", e);
+      const treatedError = e as GenericErrorHandler;
+      toast.error(`${treatedError.message}`, {
+        className: "toast-custom-icon",
+        toastId: `error-${treatedError.message}`,
+        autoClose: 1500,
+      });
+    }
   };
   //TODO : https://jujuontheweb.medium.com/how-to-use-react-hook-form-with-your-custom-form-components-a86a1a77cf3c
 
@@ -42,7 +70,7 @@ export const NewProductFormContainer = () => {
             className="normal-case"
           />
         </div>
-        <Button form="newproductform" type="submit">
+        <Button form="newproductform" type="submit" disabled={!canSubmit}>
           Enviar
         </Button>
       </fieldset>

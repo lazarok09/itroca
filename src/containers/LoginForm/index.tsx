@@ -45,6 +45,7 @@ export const LoginFormContainer = () => {
         });
       }
     } catch (e) {
+      console.error("🚀 ~ constonSubmit:SubmitHandler<Inputs>= ~ e:", e);
       toast.error(`Login ou senha inválidos`, {
         className: "toast-custom-icon",
         toastId: `error-${e}`,

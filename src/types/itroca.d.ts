@@ -26,4 +26,6 @@ declare interface GenericErrorHandler {
 declare interface PrismaErrorHandler {
   status: number;
   message: string;
+  error: string;
+  prismaMessage: string;
 }
