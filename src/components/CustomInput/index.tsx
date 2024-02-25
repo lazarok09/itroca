@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, forwardRef } from "react";
 
 const inputClass = String(`
     border
@@ -20,8 +20,15 @@ const inputClass = String(`
     autofill:shadow-black
     font-sans`);
 
-type Props = InputHTMLAttributes<HTMLInputElement>;
+type Props = {} & InputHTMLAttributes<HTMLInputElement>;
 
-export const CustomInput = (props: Props) => (
-  <input {...props} className={`${inputClass} ${props.className}`} />
-);
+export const CustomInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  return (
+    <input
+      ref={ref}
+      {...props}
+      className={`${inputClass} ${props.className || ""}`}
+    />
+  );
+});
+CustomInput.displayName = "CustomInput";
