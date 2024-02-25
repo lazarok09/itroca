@@ -8,6 +8,11 @@ import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@/components/SubmitInput";
 import { Products } from "./products";
 
+import { NewProductFormContainer } from "../NewProductForm";
+import { Heading } from "@/components/Heading";
+import { Header } from "@/components/Header";
+import { ArrowBack } from "@mui/icons-material";
+
 export type ProductsContainerProps = {
   products: ITrocaProduct[] | [];
 };
@@ -18,7 +23,7 @@ type RenderType = {
 };
 
 export function ProductsContainer({ products }: ProductsContainerProps) {
-  const [step, setStep] = useState<StepTypes>("default");
+  const [step, setStep] = useState<StepTypes>("registerProducts");
 
   const defaultView = useMemo(
     () =>
@@ -47,14 +52,19 @@ export function ProductsContainer({ products }: ProductsContainerProps) {
   );
   const registerNewProducts = useMemo(() => {
     return (
-      <div className="flex flex-col items-center gap-4  justify-center content-center pt-24 w-full">
-        <h1>Formulário de Cadastro (container)</h1>
-        <Button
-          className="bg-green-500 font-medium"
-          onClick={() => setStep("default")}
-        >
-          Voltar
-        </Button>
+      <div className="flex  flex-col items-center gap-4  justify-center content-center pt-24 w-full">
+        <section>
+          <h1>Formulário de Cadastro (container)</h1>
+          <div className="self-start">
+            <Button
+              className="bg-green-500 font-medium py-1 px-2 rounded-s-sm"
+              onClick={() => setStep("default")}
+            >
+              <ArrowBack />
+            </Button>
+          </div>
+          <NewProductFormContainer />
+        </section>
       </div>
     );
   }, []);

@@ -1,6 +1,7 @@
 import { SignCardHeading } from "@/components/LoginCardHeading";
-import { SignUpForm } from "@/components/SignUpForm";
+
 import Link from "next/link";
+import { SignUpFormContainer } from "../SignUpForm";
 
 export function SignUpPageContainer() {
   return (
@@ -8,7 +9,7 @@ export function SignUpPageContainer() {
       <div className="rounded-b-xl shadow-md h-min">
         <SignCardHeading text="Cadastre-se" />
         <section className="flex-col gap-3 p-4">
-          <SignUpForm />
+          <SignUpFormContainer />
           <div className="flex-col">
             <hr />
             <div>

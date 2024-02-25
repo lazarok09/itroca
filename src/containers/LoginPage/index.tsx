@@ -1,7 +1,6 @@
-import { LoginForm } from "@/components/LoginForm";
-
 import Link from "next/link";
 import { SignCardHeading } from "@/components/LoginCardHeading";
+import { LoginFormContainer } from "../LoginForm";
 
 export const LoginPageContainer = () => {
   return (
@@ -9,7 +8,7 @@ export const LoginPageContainer = () => {
       <div className="rounded-b-xl shadow-md h-min">
         <SignCardHeading text="Login" />
         <section className="flex-col gap-3 p-4">
-          <LoginForm />
+          <LoginFormContainer />
           <div className="flex-col">
             <hr />
             <div>
