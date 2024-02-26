@@ -18,7 +18,7 @@ export const NewProductFormContainer = () => {
         body: {
           image: inputs.image,
           name: inputs.name,
-          price: inputs.price,
+          price: Number(inputs.price),
         },
       });
       toast.success(`Produto criado.`, {
@@ -36,7 +36,6 @@ export const NewProductFormContainer = () => {
       });
     }
   };
-  //TODO : https://jujuontheweb.medium.com/how-to-use-react-hook-form-with-your-custom-form-components-a86a1a77cf3c
 
   return (
     <form id="newproductform" onSubmit={handleSubmit(onSubmit)}>

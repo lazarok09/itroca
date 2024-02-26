@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 interface ProductCardProps extends ITrocaProduct {}
 
@@ -14,7 +13,7 @@ export const ProductCard = ({ id, image, name, price }: ProductCardProps) => {
     "
     >
       <div className="p-4 relative   flex flex-1">
-        <Image src={image} height={140} width={140} alt={name} />
+        <img src={image}   height={140} width={140} alt={name} />
       </div>
 
       <div

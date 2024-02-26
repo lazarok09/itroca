@@ -9,8 +9,7 @@ import { Button } from "@/components/SubmitInput";
 import { Products } from "./products";
 
 import { NewProductFormContainer } from "../NewProductForm";
-import { Heading } from "@/components/Heading";
-import { Header } from "@/components/Header";
+
 import { ArrowBack } from "@mui/icons-material";
 
 export type ProductsContainerProps = {

@@ -108,6 +108,9 @@ export const postProduct = async ({
     credentials: "include",
     ...customOptions,
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(body),
   };
   const response = await fetch(`${API_URL}/products`, options);
