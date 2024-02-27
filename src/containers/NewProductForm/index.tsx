@@ -48,6 +48,7 @@ export const NewProductFormContainer = () => {
             placeholder="ex: iPhone 11"
             className="normal-case"
             {...register("name")}
+            required
           />
 
           <div className="pt-2" />
@@ -60,6 +61,7 @@ export const NewProductFormContainer = () => {
             max={10000}
             placeholder="3599.99"
             className="normal-case"
+            required
           />
           <div className="pt-2" />
 
@@ -69,6 +71,7 @@ export const NewProductFormContainer = () => {
             {...register("image")}
             placeholder="url()"
             className="normal-case"
+            required
           />
         </div>
         <Button form="newproductform" type="submit" disabled={!canSubmit}>
