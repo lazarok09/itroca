@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 
-import { Button } from "@/components/SubmitInput";
+import { CustomButton } from "@/components/SubmitInput";
 import { Products } from "./products";
 
 import { NewProductFormContainer } from "../NewProductForm";
@@ -37,13 +37,13 @@ export function ProductsContainer({ products }: ProductsContainerProps) {
             <Products products={products} />
           </article>
           <div className="">
-            <Button
+            <CustomButton
               className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
               title={"Adicionar mais produtos"}
               onClick={() => setStep("registerProducts")}
             >
               <AddIcon />
-            </Button>
+            </CustomButton>
           </div>
         </section>
       ),
@@ -55,12 +55,12 @@ export function ProductsContainer({ products }: ProductsContainerProps) {
         <section>
           <h1>Formulário de Cadastro (container)</h1>
           <div className="self-start">
-            <Button
+            <CustomButton
               className="bg-green-500 font-medium py-1 px-2 rounded-s-sm"
               onClick={() => setStep("default")}
             >
               <ArrowBack />
-            </Button>
+            </CustomButton>
           </div>
           <NewProductFormContainer />
         </section>

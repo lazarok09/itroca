@@ -8,7 +8,7 @@ disabled:bg-red-500
 disabled:cursor-not-allowed
 data-[loading=true]:disabled:cursor-wait
 `;
-export const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+export const CustomButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button {...props} className={`${defaultClass} ${props.className}`} >
       {props.children}

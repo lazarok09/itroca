@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { ItrocaSignUpInterface, signUp } from "@/services/itroca";
 import { toast } from "react-toastify";
-import { Button } from "../../components/SubmitInput";
+import { CustomButton } from "../../components/SubmitInput";
 import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
@@ -115,13 +115,13 @@ export const SignUpFormContainer = () => {
         />
       </fieldset>
       <div className="flex flex-1 justify-end items-end ">
-        <Button
+        <CustomButton
           disabled={!canSubmit}
           type="submit"
           data-loading={!canSubmit ? true : false}
         >
           Enviar
-        </Button>
+        </CustomButton>
       </div>
     </form>
   );

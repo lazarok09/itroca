@@ -1,4 +1,4 @@
-import { Button } from "@/components/SubmitInput";
+import { CustomButton } from "@/components/SubmitInput";
 import Image from "next/image";
 const noDataIcon = "/no_data.svg";
 
@@ -21,12 +21,12 @@ export const ProductsNotFounded = ({
       <h2>{title}</h2>
 
       <div>
-        <Button
+        <CustomButton
           onClick={handleRegisterNewProducts}
           className="bg-green-500 font-medium"
         >
           Cadastrar novos
-        </Button>
+        </CustomButton>
       </div>
     </article>
   );

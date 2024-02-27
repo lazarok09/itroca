@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Button } from "../../components/SubmitInput";
+import { CustomButton } from "../../components/SubmitInput";
 import { CustomInput } from "@/components/CustomInput";
 import { ItrocaCreateProduct, postProduct } from "@/services/itroca";
 import { toast } from "react-toastify";
@@ -74,9 +74,9 @@ export const NewProductFormContainer = () => {
             required
           />
         </div>
-        <Button form="newproductform" type="submit" disabled={!canSubmit}>
+        <CustomButton form="newproductform" type="submit" disabled={!canSubmit}>
           Enviar
-        </Button>
+        </CustomButton>
       </fieldset>
     </form>
   );
