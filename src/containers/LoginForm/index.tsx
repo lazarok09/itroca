@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { signIn } from "@/services/itroca";
 import { toast } from "react-toastify";
-import { CustomButton } from "../../components/SubmitInput";
+import { CustomButton } from "../../components/CustomButton";
 import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";

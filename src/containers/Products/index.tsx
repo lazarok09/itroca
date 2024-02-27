@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 
-import { CustomButton } from "@/components/SubmitInput";
+import { CustomButton } from "@/components/CustomButton";
 import { Products } from "./products";
 
 import { NewProductFormContainer } from "../NewProductForm";

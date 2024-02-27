@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { CustomButton } from "../../components/SubmitInput";
+import { CustomButton } from "../../components/CustomButton";
 import { CustomInput } from "@/components/CustomInput";
 import { ItrocaCreateProduct, postProduct } from "@/services/itroca";
 import { toast } from "react-toastify";

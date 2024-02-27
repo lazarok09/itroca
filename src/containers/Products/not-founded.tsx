@@ -1,4 +1,4 @@
-import { CustomButton } from "@/components/SubmitInput";
+import { CustomButton } from "@/components/CustomButton";
 import Image from "next/image";
 const noDataIcon = "/no_data.svg";
 
