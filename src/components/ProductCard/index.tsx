@@ -1,4 +1,3 @@
-
 interface ProductCardProps extends ITrocaProduct {}
 
 export const ProductCard = ({ id, image, name, price }: ProductCardProps) => {
@@ -9,11 +8,11 @@ export const ProductCard = ({ id, image, name, price }: ProductCardProps) => {
     border border-solid border-r-gray-100
     rounded-lg
     gap-3 cursor-pointer shadow-md shadow-gray-400
-    
+    max-w-xs
     "
     >
-      <div className="p-4 relative   flex flex-1">
-        <img src={image}   height={140} width={140} alt={name} />
+      <div className="flex h-40">
+        <img src={image} className="w-full h-full object-contain " alt={name} />
       </div>
 
       <div
