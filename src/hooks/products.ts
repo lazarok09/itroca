@@ -46,7 +46,6 @@ export const useSearchedProducts = ({
     ref: React.RefObject<HTMLInputElement>;
   }) => {
     router.replace("/products");
-    console.log("🚀 ~ ref.current:", ref.current);
 
     if (ref.current) {
       ref.current.value = "";
