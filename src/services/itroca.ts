@@ -85,14 +85,23 @@ export const getUser = async (): Promise<iTrocaUser> => {
 
 export const getProducts = async ({
   customOptions,
+  name,
 }: {
   customOptions?: RequestInit;
+  name?: string;
 }): Promise<ITrocaProduct[] | []> => {
   const options: RequestInit = {
     credentials: "include",
     ...customOptions,
   };
-  const response = await fetch(`${API_URL}/products`, options);
+  const searchParams = new URLSearchParams();
+  if (name?.length) {
+    searchParams.append("name", name);
+  }
+  const finalURL = new URL(`${API_URL}/products?${searchParams.toString()}`);
+
+  const response = await fetch(finalURL, options);
+
   await throwIfResponseNotOk(response);
   const data: ITrocaProduct[] = await response.json();
   return data;

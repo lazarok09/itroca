@@ -34,7 +34,7 @@ export const ProductCard = ({ id, image, name, price }: ProductCardProps) => {
         <p className="cursor-text red text-gray-700  font-semibold">
           {new Intl.NumberFormat("en-US", {
             style: "currency",
-            currency: "BRL",
+            currency: "USD",
           }).format(price)}
         </p>
       </div>
