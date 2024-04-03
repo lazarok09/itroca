@@ -84,12 +84,12 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
     <>
       <section>
         <div className="mb-5">
-          <SearchContainer ref={inputRef} />
+          <SearchContainer inputRef={inputRef} />
           <div className="flex flex-wrap gap-5">{RENDERS[step]}</div>
           <CustomButton
             className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
             title={"Adicionar mais produtos"}
-            onClick={() => cleanSearchParams(inputRef)}
+            onClick={() => cleanSearchParams({ ref: inputRef })}
           >
             <Clear />
           </CustomButton>

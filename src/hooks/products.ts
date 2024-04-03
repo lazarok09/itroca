@@ -40,8 +40,14 @@ export const useSearchedProducts = ({
     fetchData();
   }, [queryInputValue]);
 
-  const cleanSearchParams = (ref: React.RefObject<HTMLInputElement>) => {
+  const cleanSearchParams = ({
+    ref,
+  }: {
+    ref: React.RefObject<HTMLInputElement>;
+  }) => {
     router.replace("/products");
+    console.log("🚀 ~ ref.current:", ref.current);
+
     if (ref.current) {
       ref.current.value = "";
     }

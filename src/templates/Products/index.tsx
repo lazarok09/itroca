@@ -7,7 +7,6 @@ import { getProducts } from "@/services/itroca";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE_NAME } from "@/hooks/session";
 import React from "react";
-import { SearchContainer } from "@/containers/SearchProducts";
 
 export const Products = async () => {
   const cookieStorage = cookies();

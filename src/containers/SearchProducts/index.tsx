@@ -2,17 +2,17 @@
 
 import { Input } from "@mui/material";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { forwardRef } from "react";
 
 import { toast } from "react-toastify";
 export const SEARCH_INPUT_ID = "search-input";
 
-export function SearchContainer({
-  ref,
+export const SearchContainer = ({
+  inputRef,
 }: {
-  ref: React.RefObject<HTMLInputElement>;
-}) {
+  inputRef: React.RefObject<HTMLInputElement>;
+}) => {
   const router = useRouter();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -44,7 +44,7 @@ export function SearchContainer({
                 type="search"
                 name={SEARCH_INPUT_ID}
                 color="primary"
-                ref={ref}
+                inputRef={inputRef}
               />
             </fieldset>
           </form>
@@ -52,4 +52,4 @@ export function SearchContainer({
       </section>
     </>
   );
-}
+};
