@@ -74,22 +74,18 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
   };
 
   return (
-    <>
-      <section>
-        <div className="mb-5">
-          <SearchContainer inputRef={inputRef} />
-          <BackButton onClick={() => setStep("default")} />
-          <div className="flex flex-wrap gap-5 ">{RENDERS[step]}</div>
+    <section className="mb-5 ">
+      <SearchContainer inputRef={inputRef} />
+      <BackButton onClick={() => setStep("default")} />
+      <div className="flex flex-wrap gap-5 ">{RENDERS[step]}</div>
 
-          <CustomButton
-            className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold "
-            title={"Adicionar mais produtos"}
-            onClick={() => cleanSearchParams({ ref: inputRef })}
-          >
-            <Clear />
-          </CustomButton>
-        </div>
-      </section>
-    </>
+      <CustomButton
+        className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold "
+        title={"Adicionar mais produtos"}
+        onClick={() => cleanSearchParams({ ref: inputRef })}
+      >
+        <Clear />
+      </CustomButton>
+    </section>
   );
 }
