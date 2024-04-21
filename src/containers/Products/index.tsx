@@ -13,6 +13,7 @@ import { NewProductFormContainer } from "../NewProductForm";
 import { ArrowBack, Clear } from "@mui/icons-material";
 import { SearchContainer } from "../SearchProducts";
 import { useSearchedProducts } from "@/hooks/products";
+import { BackButton } from "@/components/BackButton";
 
 export type ProductsContainerProps = {
   serverProducts: ITrocaProduct[] | [];
@@ -28,7 +29,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
     serverProducts,
   });
   const inputRef = useRef<HTMLInputElement>(null);
-  const [step, setStep] = useState<StepTypes>("default");
+  const [step, setStep] = useState<StepTypes>("registerProducts");
 
   const defaultView = useMemo(
     () =>
@@ -60,14 +61,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
         <div className="flex  flex-col items-center gap-4  justify-center content-center pt-24 w-full">
           <section>
             <h1>Formulário de Cadastro (container)</h1>
-            <div className="self-start">
-              <CustomButton
-                className="bg-green-500 font-medium py-1 px-2 rounded-s-sm"
-                onClick={() => setStep("default")}
-              >
-                <ArrowBack />
-              </CustomButton>
-            </div>
+
             <NewProductFormContainer />
           </section>
         </div>
@@ -85,6 +79,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
       <section>
         <div className="mb-5">
           <SearchContainer inputRef={inputRef} />
+          <BackButton onClick={() => setStep("default")} />
           <div className="flex flex-wrap gap-5">{RENDERS[step]}</div>
           <CustomButton
             className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
