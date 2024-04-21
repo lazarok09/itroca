@@ -41,7 +41,7 @@ export const NewProductFormContainer = () => {
     <form id="newproductform" onSubmit={handleSubmit(onSubmit)}>
       <fieldset form={"newproductform"}>
         <div className="flex flex-col gap-1">
-          <label htmlFor="iphone_name">iPhone</label>
+          <label htmlFor="iphone_name">Nome</label>
           <CustomInput
             type="text"
             id="iphone_name"

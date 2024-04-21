@@ -57,15 +57,14 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
   );
   const registerNewProducts = useMemo(() => {
     return (
-      <>
-        <div className="flex  flex-col items-center gap-4  justify-center content-center pt-24 w-full">
-          <section>
-            <h1>Formulário de Cadastro (container)</h1>
-
-            <NewProductFormContainer />
-          </section>
+      <section className="flex flex-col items-center w-full">
+        <div className="flex justify-center">
+          <h1 className="text-center pb-5 text-xl">Formulário de Cadastro</h1>
         </div>
-      </>
+        <div className="flex  flex-col items-center gap-4  justify-center content-center">
+          <NewProductFormContainer />
+        </div>
+      </section>
     );
   }, []);
 
@@ -80,9 +79,10 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
         <div className="mb-5">
           <SearchContainer inputRef={inputRef} />
           <BackButton onClick={() => setStep("default")} />
-          <div className="flex flex-wrap gap-5">{RENDERS[step]}</div>
+          <div className="flex flex-wrap gap-5 ">{RENDERS[step]}</div>
+
           <CustomButton
-            className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
+            className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold "
             title={"Adicionar mais produtos"}
             onClick={() => cleanSearchParams({ ref: inputRef })}
           >

@@ -1,7 +1,6 @@
-import { SEARCH_INPUT_ID } from "@/containers/SearchProducts";
 import { getProducts } from "@/services/itroca";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { ForwardedRef, useEffect, useRef, useState } from "react";
+import React, {  useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export const useSearchedProducts = ({
