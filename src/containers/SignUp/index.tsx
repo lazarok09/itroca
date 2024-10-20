@@ -13,7 +13,7 @@ export function SignUpPageContainer() {
           <div className="flex-col">
             <hr />
             <div>
-              <Link className="underline" href={"/sign"}>
+              <Link className="underline" href={"/login"}>
                 Login
               </Link>
             </div>
