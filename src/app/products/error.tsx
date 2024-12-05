@@ -14,7 +14,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-  // Log the error to an error reporting service
+    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
@@ -22,7 +22,7 @@ export default function Error({
     <>
       <Header />
       <section className=" min-h-screen flex  items-center flex-col gap-5 ">
-        <article className="flex flex-col gap-4 pt-32">
+        <article className="flex flex-col gap- pt-32">
           <Image height={250} width={250} src={donutsIcon} alt={"donuts"} />
           <div className="flex w-max-72 ">
             <ErrorMessage
@@ -33,7 +33,7 @@ export default function Error({
         </article>
         <div>
           <button
-            className="p-5 bg-green-500 rounded-lg text-white font-medium hover:bg-gray-600 "
+            className="pt-3  pb-3 pl-6 pr-6 bg-green-500 rounded-lg text-white font-medium hover:bg-gray-600 "
             onClick={
               // Attempt to recover by trying to re-render the segment
               () => reset()
