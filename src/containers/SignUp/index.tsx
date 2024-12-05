@@ -8,17 +8,7 @@ export function SignUpPageContainer() {
     <main className="flex justify-center mt-20">
       <div className="rounded-b-xl shadow-md h-min">
         <SignCardHeading text="Cadastre-se" />
-        <section className="flex-col gap-3 p-4">
-          <SignUpFormContainer />
-          <div className="flex-col">
-            <hr />
-            <div>
-              <Link className="underline" href={"/login"}>
-                Login
-              </Link>
-            </div>
-          </div>
-        </section>
+        <SignUpFormContainer />
       </div>
     </main>
   );
