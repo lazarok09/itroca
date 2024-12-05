@@ -8,10 +8,14 @@ import { useContext } from "react";
 import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
 import { CustomInput } from "../../components/CustomInput";
+import { colors } from "@mui/material";
 
 type Inputs = {
   useremail: string;
   password: string;
+};
+type Props = {
+  message: string;
 };
 
 export const LoginFormContainer = () => {
@@ -46,6 +50,20 @@ export const LoginFormContainer = () => {
       }
     } catch (e) {
       console.error("🚀 ~ constonSubmit:SubmitHandler<Inputs>= ~ e:", e);
+      const error = e as Props;
+
+      if (error.message === "Failed to fetch") {
+        toast.error(`Serviço não disponível`, {
+          className: "toast-custom-icon",
+          toastId: `error-${e}`,
+          autoClose: 1500,
+          progressStyle: {
+            background: colors.green['500'],
+          },
+        });
+        return;
+      }
+
       toast.error(`Login ou senha inválidos`, {
         className: "toast-custom-icon",
         toastId: `error-${e}`,
