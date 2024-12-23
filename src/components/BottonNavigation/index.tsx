@@ -9,7 +9,7 @@ export const FooterBottonNavigation = () => {
   const [value, setValue] = useState(0);
 
   return (
-    <nav className="flex gap-4    items-center justify-center absolute bottom-0 w-full drop-shadow-md lg:drop-shadow-xl">
+    <nav className="flex gap-4    items-center justify-center fixed bottom-0 w-full drop-shadow-md lg:drop-shadow-xl">
       <Box sx={{ width: "100%" }}>
         <BottomNavigation
           showLabels
