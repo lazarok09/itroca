@@ -1,3 +1,3 @@
 export const colors = {
-  lightGreen: "00b90f",
+  lightGreen: "#00b90f",
 };

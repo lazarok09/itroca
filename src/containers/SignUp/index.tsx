@@ -16,7 +16,7 @@ export function SignUpPageContainer() {
 
   return (
     <div className="rounded-b-xl shadow-md h-min" ref={signupRef}>
-      <SignCardHeading text="Cadastre-se" />
+      <SignCardHeading text="Sign Up" />
       <SignUpFormContainer />
     </div>
   );

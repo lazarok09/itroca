@@ -13,12 +13,12 @@ export const LoginPageContainer = () => {
             <hr />
             <div>
               <Link className="underline" href={"/signup"}>
-                Cadastre-se
+                Sign Up
               </Link>
             </div>
             <div>
               <Link className="underline" href={"/"}>
-                Esqueci a senha
+                Forgot my password
               </Link>
             </div>
           </div>
