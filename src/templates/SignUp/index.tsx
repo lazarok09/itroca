@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 export const SignUpTemplate = () => {
   return (
     <>
-      <Header />
       <div
         className="
-         min-h-screen
-         text-bg
-      "
+        min-h-screen
+        text-bg
+        "
       >
+        <Header />
         <SignUpPageContainer />
       </div>
       <Footer />

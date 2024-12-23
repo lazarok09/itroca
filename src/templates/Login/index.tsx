@@ -10,17 +10,18 @@ export const metadata: Metadata = {
 
 export const Login = () => {
   return (
-    <>
-      <Header />
-      <div
-        className="
+    <div
+      className="
          min-h-screen
          text-bg
       "
-      >
+    >
+      <Header />
+      <div className="flex place-items-center justify-center min-h-max">
+
         <LoginPageContainer />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };

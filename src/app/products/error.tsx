@@ -1,9 +1,11 @@
 "use client"; // Error components must be Client Components
 
+import { FooterBottonNavigation } from "@/components/BottonNavigation";
 import { ErrorMessage } from "@/components/Error";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import Image from "next/image";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 const donutsIcon = "/donuts.svg";
 
 export default function Error({
@@ -19,14 +21,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <>
+    <div className=" min-h-screen">
       <Header />
-      <section className=" min-h-screen flex  items-center flex-col gap-5 ">
-        <article className="flex flex-col gap- pt-32">
+      <section className="flex  items-center flex-col gap-3 ">
+        <article className="flex flex-col gap-2 pt-32">
           <Image height={250} width={250} src={donutsIcon} alt={"donuts"} />
-          <div className="flex w-max-72 ">
+          <div className="flex w-max-72  ">
             <ErrorMessage
-              label="Parece que encontramos um erro"
+              label={"Seems like somenting went wrong :/"}
               error={error?.message}
             />
           </div>
@@ -40,10 +42,12 @@ export default function Error({
             }
             type="button"
           >
-            Tentar novamente
+            Try again
           </button>
         </div>
       </section>
-    </>
+
+      <FooterBottonNavigation />
+    </div>
   );
 }

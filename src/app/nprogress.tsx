@@ -6,7 +6,7 @@ export default function NProgressProvider() {
     <AppProgressBar
       height="4px"
       color="#00b90f"
-      options={{ showSpinner: true}}
+      options={{ showSpinner: false}}
       delay={500}
       shallowRouting
 

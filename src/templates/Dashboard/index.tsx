@@ -7,7 +7,7 @@ import { DashboardUser } from "@/containers/DashBoardUser";
 
 export const Dashboard = async () => {
   return (
-    <>
+    <div className="min-h-screen ">
       <Header />
       <main>
         <div className="flex ">
@@ -16,9 +16,9 @@ export const Dashboard = async () => {
           </div>
         </div>
       </main>
-      <header
+      <div
         className="
-        min-h-screen 
+        
         flex
         font-mono;
         h-full
@@ -30,8 +30,8 @@ export const Dashboard = async () => {
         <LogoImage />
 
         <Heading>Bem vindo</Heading>
-      </header>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };

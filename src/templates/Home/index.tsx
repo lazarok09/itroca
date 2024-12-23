@@ -4,14 +4,15 @@ import { Footer } from "@/components/Footer";
 import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
 import { Fragment } from "react";
+import { FooterBottonNavigation } from "@/components/BottonNavigation";
 
 export const Home = () => {
   return (
-    <Fragment>
+    <div className="min-h-screen">
       <Header />
 
       <div
-        className="min-h-screen    display: flex;
+        className="  display: flex;
           flex
           font-mono
           h-full
@@ -26,6 +27,7 @@ export const Home = () => {
       </div>
 
       <Footer />
-    </Fragment>
+      <FooterBottonNavigation />
+    </div>
   );
 };

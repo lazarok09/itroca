@@ -6,6 +6,7 @@ import { DashBoardButton } from "../DashBoardButton";
 import { HeaderLink } from "../HeaderLink";
 import { ProductsButton } from "../ProductsButton";
 import { SignUpButton } from "../SignUpButton";
+import { Fragment, useState } from "react";
 
 export const Header = () => {
   return (
@@ -31,12 +32,20 @@ export const Header = () => {
         <HeaderLink active={false}>
           <Link href={"/"}>Inicio</Link>
         </HeaderLink>
-        <DashBoardButton />
-        <ProductsButton />
-        <SignInButton />
-        <SignUpButton />
-        <SignOutButton />
+        <HeaderDesktop />
       </nav>
     </header>
+  );
+};
+
+const HeaderDesktop = () => {
+  return (
+    <Fragment>
+      <DashBoardButton />
+      <ProductsButton />
+      <SignInButton />
+      <SignUpButton />
+      <SignOutButton />
+    </Fragment>
   );
 };
