@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
 import { Fragment } from "react";
-import { FooterBottonNavigation } from "@/components/BottonNavigation";
+import { FooterBottomNavigation } from "@/components/BottomNavigation";
 
 export const Home = () => {
   return (
@@ -31,7 +31,7 @@ export const Home = () => {
       </div>
 
       <Footer />
-      <FooterBottonNavigation />
+      <FooterBottomNavigation />
     </div>
   );
 };

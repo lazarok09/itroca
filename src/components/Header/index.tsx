@@ -7,6 +7,7 @@ import { HeaderLink } from "../HeaderLink";
 import { ProductsButton } from "../ProductsButton";
 import { SignUpButton } from "../SignUpButton";
 import { Fragment, useState } from "react";
+import HeaderAppBar from "../AppBar";
 
 export const Header = () => {
   return (
@@ -14,26 +15,10 @@ export const Header = () => {
       className="
        flex flex-1 items-center
        sticky top-0 
-       px-4 
        justify-end
     "
     >
-      <nav
-        className="
-          flex
-          justify-center
-          items-center
-          gap-4
-          self-end
-          m-1
-    
-      "
-      >
-        <HeaderLink active={false}>
-          <Link href={"/"}>Inicio</Link>
-        </HeaderLink>
-        <HeaderDesktop />
-      </nav>
+      <HeaderAppBar />
     </header>
   );
 };

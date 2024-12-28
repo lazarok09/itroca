@@ -3,7 +3,7 @@ import { SignUpPageContainer } from "@/containers/SignUp";
 
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
-import { FooterBottonNavigation } from "@/components/BottonNavigation";
+import { FooterBottomNavigation } from "@/components/BottomNavigation";
 // either Static metadata
 export const metadata: Metadata = {
   title: "iTroca | cadsatre-se2",
@@ -23,7 +23,7 @@ export const SignUpTemplate = () => {
           <SignUpPageContainer />
         </main>
       </div>
-      <FooterBottonNavigation />
+      <FooterBottomNavigation />
     </div>
   );
 };

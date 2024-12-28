@@ -3,7 +3,7 @@ import { LoginPageContainer } from "@/containers/LoginPage";
 
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
-import { FooterBottonNavigation } from "@/components/BottonNavigation";
+import { FooterBottomNavigation } from "@/components/BottomNavigation";
 // either Static metadata
 export const metadata: Metadata = {
   title: "iTroca | Login",
@@ -25,7 +25,7 @@ export const Login = () => {
         <LoginPageContainer />
       </div>
       <Footer />
-      <FooterBottonNavigation />
+      <FooterBottomNavigation />
     </div>
   );
 };

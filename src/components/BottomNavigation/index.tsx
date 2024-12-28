@@ -8,13 +8,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 
-const ROUTES = [
+export const ROUTES = [
   { path: "/", label: "Home", icon: <HomeIcon /> },
   { path: "/products", label: "Produtos", icon: <ShoppingCartIcon /> },
   { path: "/login", label: "Login", icon: <LoginIcon /> },
 ];
 
-export const FooterBottonNavigation = () => {
+export const FooterBottomNavigation = () => {
   const router = useRouter();
   const pathname = usePathname();
 
