@@ -1,55 +1,53 @@
 "use client";
+
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 
-enum Redirects {
-  products = "products",
-  home = "home",
-  login = "login",
-}
+const ROUTES = [
+  { path: "/", label: "Home", icon: <HomeIcon /> },
+  { path: "/products", label: "Produtos", icon: <ShoppingCartIcon /> },
+  { path: "/login", label: "Login", icon: <LoginIcon /> },
+];
 
 export const FooterBottonNavigation = () => {
-  const [value, setValue] = useState(0);
   const router = useRouter();
+  const pathname = usePathname();
 
-  function handleRedirect(destination: keyof typeof Redirects) {
-    if (destination === "home") {
-      return router.push("/");
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Atualiza o índice ativo com base na rota atual
+  useEffect(() => {
+    const currentIndex = ROUTES.findIndex((route) => route.path === pathname);
+    setActiveIndex(currentIndex === -1 ? 0 : currentIndex);
+  }, [pathname]);
+
+  const handleNavigation = (index: number) => {
+    const selectedRoute = ROUTES[index];
+    if (selectedRoute && selectedRoute.path !== pathname) {
+      router.push(selectedRoute.path);
     }
-    return router.push(`/${Redirects[destination]}`);
-  }
+  };
 
   return (
-    <nav className="flex gap-4    items-center justify-center fixed bottom-0 w-full drop-shadow-md lg:drop-shadow-xl">
-      <Box sx={{ width: "100%" }} borderColor={"#fffff"}>
+    <nav className="fixed bottom-0 w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl">
+      <Box sx={{ width: "100%" }} borderColor="#ffffff">
         <BottomNavigation
           showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
+          value={activeIndex}
+          onChange={(event, newIndex) => handleNavigation(newIndex)}
         >
-          <BottomNavigationAction
-            onClick={() => handleRedirect(Redirects.home)}
-            label="Home"
-            icon={<HomeIcon />}
-          />
-          <BottomNavigationAction
-            label="Produtos"
-            icon={<ShoppingCartIcon />}
-            onClick={() => handleRedirect(Redirects.products)}
-          />
-          <BottomNavigationAction
-            label="Login"
-            icon={<LoginIcon />}
-            onClick={() => handleRedirect(Redirects.login)}
-          />
+          {ROUTES.map((route, index) => (
+            <BottomNavigationAction
+              key={route.path}
+              label={route.label}
+              icon={route.icon}
+            />
+          ))}
         </BottomNavigation>
       </Box>
     </nav>
