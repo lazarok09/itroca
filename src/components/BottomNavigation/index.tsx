@@ -1,7 +1,6 @@
 "use client";
 
-import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 import HomeIcon from "@mui/icons-material/Home";
@@ -14,7 +13,11 @@ export const ROUTES = [
   { path: "/login", label: "Login", icon: <LoginIcon /> },
 ];
 
-export const FooterBottomNavigation = () => {
+type Props = {
+  variant?: "header" | "footer";
+};
+
+export const FooterBottomNavigation = ({ variant = "footer" }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,23 +36,50 @@ export const FooterBottomNavigation = () => {
     }
   };
 
+  const navClasses = useMemo(() => {
+    if (variant === "header") {
+      return `fixed w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `;
+    }
+
+    return `fixed bottom-0 w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `;
+  }, [variant]);
+
   return (
-    <nav className="fixed bottom-0 w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl">
-      <Box sx={{ width: "100%" }} borderColor="#ffffff">
-        <BottomNavigation
-          showLabels
-          value={activeIndex}
-          onChange={(event, newIndex) => handleNavigation(newIndex)}
-        >
-          {ROUTES.map((route, index) => (
-            <BottomNavigationAction
-              key={route.path}
-              label={route.label}
-              icon={route.icon}
-            />
-          ))}
-        </BottomNavigation>
-      </Box>
+    <nav className={navClasses}>
+      <div className="flex flex-row justify-center p-6">
+        {ROUTES.map((route, index) => (
+          <NavigationButton
+            activeIndex={activeIndex === index}
+            handleNavigation={() => handleNavigation(index)}
+            key={route.path}
+            label={route.label}
+            icon={route.icon}
+          />
+        ))}
+      </div>
     </nav>
+  );
+};
+
+type BottomNavigationActionProps = {
+  label: string;
+  icon: JSX.Element;
+  handleNavigation: () => void;
+  activeIndex: boolean;
+};
+
+export const NavigationButton = (props: BottomNavigationActionProps) => {
+  const { handleNavigation, icon, label, activeIndex } = props;
+
+  return (
+    <button
+      onClick={handleNavigation}
+      className={`${
+        activeIndex ? "text-green-500" : "text-zinc-400 px-4"
+      } flex flex-col items-center justify-center`}
+    >
+      {icon}
+      <span>{label}</span>
+    </button>
   );
 };
