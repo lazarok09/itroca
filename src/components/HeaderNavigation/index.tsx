@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 import { NavigationButton } from "../NavigationButton";
 import { ROUTES } from "../BottomNavigation";
 import { Avatar } from "@mui/material";
-import { deepOrange, deepPurple } from "@mui/material/colors";
+import { deepOrange } from "@mui/material/colors";
 import { useProfile } from "@/hooks/profile";
 
 export const HeaderNavigation = () => {
@@ -15,7 +15,7 @@ export const HeaderNavigation = () => {
   const {
     session: {
       status,
-      user: { email, name, image },
+      user: { name, image },
     },
   } = useProfile();
 
@@ -33,14 +33,21 @@ export const HeaderNavigation = () => {
       router.push(selectedRoute.path);
     }
   };
+
   const handleAvatar = () => {
     if (status === "notauthenticated") {
       router.push("/login");
     }
     if (status === "authenticated") {
-      router.push("/produtos");
+      router.push("/products");
     }
   };
+
+  const userNameOrEquivalent = useMemo(
+    () => (name?.length ? name?.at(0) : "L"),
+    [name]
+  );
+
   return (
     <nav
       className={` w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `}
@@ -57,9 +64,13 @@ export const HeaderNavigation = () => {
         ))}
       </div>
       <div className="flex">
-        <button onClick={handleAvatar}>
-          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={name} src={image}>
-            {name?.length ? name?.at(0) : "L"}
+        <button onClick={handleAvatar} title={userNameOrEquivalent}>
+          <Avatar
+            sx={{ bgcolor: deepOrange[500] }}
+            alt={userNameOrEquivalent}
+            src={image}
+          >
+            {userNameOrEquivalent}
           </Avatar>
         </button>
       </div>
