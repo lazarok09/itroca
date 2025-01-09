@@ -19,9 +19,6 @@ export default function HeaderAppBar() {
   const handleRedirect = () => {
     router.push("signup");
   };
-  React.useEffect(() => {
-    setBody(<HeaderMenuDialogBody handleToggleMenu={handleToggleMenu} />);
-  });
 
   const handleToggleMenu = () => {
     setBody(<HeaderMenuDialogBody handleToggleMenu={handleToggleMenu} />);
@@ -55,18 +52,17 @@ const HeaderMenuDialogBody = ({
   return (
     <div className="flex  flex-row align-center w-50  p-4">
       <div className="flex flex-col ">
-        
-        <Typography variant="h6" component="div" >
+        <Typography variant="h6" component="div">
           Dashboard
         </Typography>
-        <Typography variant="h6" component="div" >
+        <Typography variant="h6" component="div">
           Products
         </Typography>
 
-        <Typography variant="h6" component="div" >
+        <Typography variant="h6" component="div">
           Login
         </Typography>
-        <Typography variant="h6" component="div" >
+        <Typography variant="h6" component="div">
           Log out
         </Typography>
       </div>
