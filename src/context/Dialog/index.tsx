@@ -2,6 +2,7 @@
 
 import React, { RefObject, useRef, useState } from "react";
 import { DialogContext } from "./context";
+import { DialogContainer } from "@/containers/Dialog";
 
 export interface DialogProps {
   dialogRef: RefObject<HTMLDialogElement> | null;
@@ -26,13 +27,8 @@ export const CustomDialogProvider = ({
       }}
     >
       <DialogContainer dialogRef={dialogRef} body={body} />
+
       {children}
     </DialogContext.Provider>
   );
-};
-
-type DialogContainerProps = {} & Omit<DialogProps, "setBody">;
-
-const DialogContainer = ({ dialogRef, body }: DialogContainerProps) => {
-  return <dialog ref={dialogRef}>{body}</dialog>;
 };

@@ -2,10 +2,9 @@
 
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
 import { ErrorMessage } from "@/components/Error";
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import Image from "next/image";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 const donutsIcon = "/donuts.svg";
 
 export default function Error({

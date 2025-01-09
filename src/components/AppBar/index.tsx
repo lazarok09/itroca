@@ -16,47 +16,24 @@ export default function HeaderAppBar() {
   const router = useRouter();
   const { dialogRef, setBody } = useDialog();
 
-  const headerMenuDialogBody = React.useMemo(() => {
-    return (
-      <div>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Link 1
-        </Typography>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Link 2
-        </Typography>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Link 3
-        </Typography>
-        <form method="dialog">
-          <Button
-            title={"Fechar"}
-            className="cursor-pointer  "
-            style={{
-              border: "1px solid red",
-            }}
-          >
-            <Close />
-          </Button>
-        </form>
-      </div>
-    );
-  }, []);
-
   const handleRedirect = () => {
     router.push("signup");
   };
+  React.useEffect(() => {
+    setBody(<HeaderMenuDialogBody handleToggleMenu={handleToggleMenu} />);
+  });
 
   const handleToggleMenu = () => {
+    setBody(<HeaderMenuDialogBody handleToggleMenu={handleToggleMenu} />);
 
-    setBody(headerMenuDialogBody);
-    
     if (dialogRef?.current) {
+      if (dialogRef.current.open) {
+        return dialogRef.current.close();
+      }
+
       return dialogRef.current.showModal();
     }
   };
-
-  const handleOpenMenu = () => {};
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#E3262E" }}>
@@ -69,3 +46,40 @@ export default function HeaderAppBar() {
     </Box>
   );
 }
+
+const HeaderMenuDialogBody = ({
+  handleToggleMenu,
+}: {
+  handleToggleMenu: () => void;
+}) => {
+  return (
+    <div className="flex  flex-row align-center w-50  p-4">
+      <div className="flex flex-col ">
+        
+        <Typography variant="h6" component="div" >
+          Dashboard
+        </Typography>
+        <Typography variant="h6" component="div" >
+          Products
+        </Typography>
+
+        <Typography variant="h6" component="div" >
+          Login
+        </Typography>
+        <Typography variant="h6" component="div" >
+          Log out
+        </Typography>
+      </div>
+
+      <form method="dialog">
+        <Button
+          title={"Fechar"}
+          className="cursor-pointer  "
+          onClick={handleToggleMenu}
+        >
+          <Close />
+        </Button>
+      </form>
+    </div>
+  );
+};
