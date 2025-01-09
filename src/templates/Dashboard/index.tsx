@@ -29,7 +29,7 @@ export const Dashboard = async () => {
       >
         <LogoImage />
 
-        <Heading>Bem vindo</Heading>
+        
       </div>
       <Footer />
     </div>

@@ -10,7 +10,6 @@ export const UserAvatar = ({ user }: { user: iTrocaUser }) => (
       className="rounded-full"
     />
     <p className="capitalize">
-      {" "}
       Olá <span className="text-red-500">{user.name}</span>
     </p>
   </div>

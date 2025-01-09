@@ -7,6 +7,7 @@ import ToastProvider from "./toast";
 import "./global.css";
 import { CustomSessionProvider } from "@/context/Session";
 import NProgressProvider from "./nprogress";
+import { CustomDialogProvider } from "@/context/Dialog";
 
 export default async function RootLayout({
   children,
@@ -18,7 +19,9 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NProgressProvider />
         <CustomSessionProvider>
-          <ToastProvider>{children}</ToastProvider>
+          <CustomDialogProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </CustomDialogProvider>
         </CustomSessionProvider>
       </body>
     </html>

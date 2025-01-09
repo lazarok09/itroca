@@ -1,12 +1,10 @@
-import Link from "next/link";
 
 import { SignOutButton } from "../SignOutButton";
 import { SignInButton } from "../SignInButton";
 import { DashBoardButton } from "../DashBoardButton";
-import { HeaderLink } from "../HeaderLink";
 import { ProductsButton } from "../ProductsButton";
 import { SignUpButton } from "../SignUpButton";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import HeaderAppBar from "../AppBar";
 
 export const Header = () => {
@@ -22,7 +20,7 @@ export const Header = () => {
     </header>
   );
 };
-
+// TODO: create equal options for mobile and desktop
 const HeaderDesktop = () => {
   return (
     <Fragment>
