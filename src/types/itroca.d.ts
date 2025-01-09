@@ -4,6 +4,7 @@ declare interface iTrocaUser {
   name: string;
   age: number;
   address: string;
+  image: string;
 }
 declare interface ITrocarUserCredentials extends iTrocaUser {
   token: string;

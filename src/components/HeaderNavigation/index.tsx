@@ -3,20 +3,21 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
-import HomeIcon from "@mui/icons-material/Home";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LoginIcon from "@mui/icons-material/Login";
 import { NavigationButton } from "../NavigationButton";
+import { ROUTES } from "../BottomNavigation";
+import { Avatar } from "@mui/material";
+import { deepOrange, deepPurple } from "@mui/material/colors";
+import { useProfile } from "@/hooks/profile";
 
-export const ROUTES = [
-  { path: "/", label: "Home", icon: <HomeIcon /> },
-  { path: "/products", label: "Produtos", icon: <ShoppingCartIcon /> },
-  { path: "/login", label: "Login", icon: <LoginIcon /> },
-];
-
-export const FooterBottomNavigation = () => {
+export const HeaderNavigation = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const {
+    session: {
+      status,
+      user: { email, name, image },
+    },
+  } = useProfile();
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -32,10 +33,17 @@ export const FooterBottomNavigation = () => {
       router.push(selectedRoute.path);
     }
   };
-
+  const handleAvatar = () => {
+    if (status === "notauthenticated") {
+      router.push("/login");
+    }
+    if (status === "authenticated") {
+      router.push("/produtos");
+    }
+  };
   return (
     <nav
-      className={`fixed bottom-0 w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `}
+      className={` w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `}
     >
       <div className="flex flex-row justify-center p-6">
         {ROUTES.map((route, index) => (
@@ -47,6 +55,13 @@ export const FooterBottomNavigation = () => {
             icon={route.icon}
           />
         ))}
+      </div>
+      <div className="flex">
+        <button onClick={handleAvatar}>
+          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={name} src={image}>
+            {name?.length ? name?.at(0) : "L"}
+          </Avatar>
+        </button>
       </div>
     </nav>
   );

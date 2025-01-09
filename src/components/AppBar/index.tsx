@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useRouter } from "next/navigation";
 import { FooterBottomNavigation } from "../BottomNavigation";
+import { HeaderNavigation } from "../HeaderNavigation";
 
 export default function HeaderAppBar() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function HeaderAppBar() {
     <Box sx={{ flexGrow: 1, backgroundColor: "#E3262E" }}>
       <AppBar position="static">
         <Toolbar>
-          <FooterBottomNavigation   variant="header"/>
+          <HeaderNavigation />
         </Toolbar>
       </AppBar>
     </Box>
