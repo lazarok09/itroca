@@ -24,7 +24,6 @@ export const Login = () => {
       >
         <LoginPageContainer />
       </div>
-      <Footer />
       <FooterBottomNavigation />
     </div>
   );

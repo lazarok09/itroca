@@ -34,46 +34,17 @@ export const HeaderNavigation = () => {
     }
   };
 
-  const handleAvatar = () => {
-    if (status === "notauthenticated") {
-      router.push("/login");
-    }
-    if (status === "authenticated") {
-      router.push("/products");
-    }
-  };
-
-  const userNameOrEquivalent = useMemo(
-    () => (name?.length ? name?.at(0) : "L"),
-    [name]
-  );
-
   return (
-    <nav
-      className={` w-full flex justify-center items-center drop-shadow-md lg:drop-shadow-xl `}
-    >
-      <div className="flex flex-row justify-center p-6">
-        {ROUTES.map((route, index) => (
-          <NavigationButton
-            activeIndex={activeIndex === index}
-            handleNavigation={() => handleNavigation(index)}
-            key={route.path}
-            label={route.label}
-            icon={route.icon}
-          />
-        ))}
-      </div>
-      <div className="flex">
-        <button onClick={handleAvatar} title={userNameOrEquivalent}>
-          <Avatar
-            sx={{ bgcolor: deepOrange[500] }}
-            alt={userNameOrEquivalent}
-            src={image}
-          >
-            {userNameOrEquivalent}
-          </Avatar>
-        </button>
-      </div>
-    </nav>
+    <div className="flex flex-row justify-center p-6">
+      {ROUTES.map((route, index) => (
+        <NavigationButton
+          activeIndex={activeIndex === index}
+          handleNavigation={() => handleNavigation(index)}
+          key={route.path}
+          label={route.label}
+          icon={route.icon}
+        />
+      ))}
+    </div>
   );
 };

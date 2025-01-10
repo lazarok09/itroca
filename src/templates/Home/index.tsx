@@ -30,7 +30,6 @@ export const Home = () => {
         <Heading>iTroca </Heading>
       </div>
 
-      <Footer />
       
       <FooterBottomNavigation />
     </div>

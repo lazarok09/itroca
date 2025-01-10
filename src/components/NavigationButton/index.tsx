@@ -7,12 +7,12 @@ type BottomNavigationActionProps = {
 
 export const NavigationButton = (props: BottomNavigationActionProps) => {
   const { handleNavigation, icon, label, activeIndex } = props;
-
+  // #68BAF2
   return (
     <button
       onClick={handleNavigation}
       className={`${
-        activeIndex ? "text-green-500" : "text-zinc-400 px-4"
+        activeIndex ? "text-heavyBlue" : "text-zinc-400 px-4"
       } flex flex-col items-center justify-center`}
     >
       {icon}

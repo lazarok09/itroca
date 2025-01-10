@@ -11,6 +11,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      lightGreen: "#00b90f",
+      cleanBlue: "#6CBAE9",
+      heavyBlue: "#68BAF2",
+    },
     extend: {
       minHeight: (theme) => ({
         ...theme("spacing"),

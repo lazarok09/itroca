@@ -1,9 +1,9 @@
 import { Header } from "@/components/Header";
 
 import { Footer } from "@/components/Footer";
-import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
 import { DashboardUser } from "@/containers/DashBoardUser";
+import { FooterBottomNavigation } from "@/components/BottomNavigation";
 
 export const Dashboard = async () => {
   return (
@@ -28,10 +28,8 @@ export const Dashboard = async () => {
     "
       >
         <LogoImage />
-
-        
       </div>
-      <Footer />
+      <FooterBottomNavigation />
     </div>
   );
 };

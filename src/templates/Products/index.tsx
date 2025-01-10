@@ -7,6 +7,7 @@ import { getProducts } from "@/services/itroca";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE_NAME } from "@/hooks/session";
 import React, { Fragment } from "react";
+import { FooterBottomNavigation } from "@/components/BottomNavigation";
 
 export const Products = async () => {
   const cookieStorage = cookies();
@@ -27,6 +28,7 @@ export const Products = async () => {
         <ProductsContainer serverProducts={products} />
       </main>
       <Footer />
+      <FooterBottomNavigation/>
     </Fragment>
   );
 };
