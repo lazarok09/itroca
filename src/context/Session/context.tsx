@@ -10,9 +10,10 @@ export const DEFAULT_VALUES: CustomSession = {
       address: undefined,
       age: undefined,
       email: undefined,
+      image: undefined,
       id: undefined,
       name: undefined,
-    },
+    } as any,
   },
   setSession: () => {},
 };
