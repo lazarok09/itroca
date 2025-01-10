@@ -12,11 +12,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 
 import { useRouter } from "next/navigation";
-import { HeaderNavigation } from "../HeaderNavigation";
+
 import { useDialog } from "@/hooks/dialog";
-import { UserAvatar } from "../UserAvatar";
+
 import { AvatarUser } from "../AvatarUser";
 import { Divider, InputBase } from "@mui/material";
+
+import { toast } from "react-toastify";
+export const SEARCH_INPUT_NAME = "search-input";
 
 export default function HeaderAppBar() {
   const router = useRouter();
@@ -42,6 +45,20 @@ export default function HeaderAppBar() {
   const toggleSearch = () => {
     setIsSearchExpanded((prev) => !prev);
   };
+  const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const inputValue = String(form.get(SEARCH_INPUT_NAME)).trim();
+    if (!inputValue) {
+      toast.error("Valor não encontrado", {
+        className: "toast-custom-icon",
+        toastId: `error-${e}`,
+        autoClose: 1500,
+      });
+      return;
+    }
+    router.push(`/products?name=${inputValue}`);
+  };
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#E3262E" }}>
@@ -49,8 +66,14 @@ export default function HeaderAppBar() {
         <Toolbar>
           <nav className={` w-full flex justify-between items-center`}>
             <MenuIcon onClick={handleToggleMenu} />
-            <form className="flex " action="/products?search=" method="get">
+            <form
+              className="flex "
+              action="/products?search="
+              method="get"
+              onSubmit={onSearchSubmit}
+            >
               <InputBase
+                name={SEARCH_INPUT_NAME}
                 sx={{ ml: 1, flex: 1, color: "white" }}
                 placeholder="New iPhone 2025"
                 inputProps={{ "aria-label": "search for a product" }}

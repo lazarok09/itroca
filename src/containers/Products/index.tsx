@@ -11,7 +11,6 @@ import { Products } from "./products";
 import { NewProductFormContainer } from "../NewProductForm";
 
 import { ArrowBack, Clear } from "@mui/icons-material";
-import { SearchContainer } from "../SearchProducts";
 import { useSearchedProducts } from "@/hooks/products";
 import { BackButton } from "@/components/BackButton";
 
@@ -75,7 +74,6 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
 
   return (
     <section className="mb-5 ">
-      <SearchContainer inputRef={inputRef} />
       <BackButton onClick={() => setStep("default")} />
       <div className="flex flex-wrap gap-5 ">{RENDERS[step]}</div>
 

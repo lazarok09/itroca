@@ -1,4 +1,5 @@
 import tailwindcssMotion from "tailwindcss-motion";
+import { theme } from "./src/styles/theme.ts";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,9 +13,7 @@ module.exports = {
   ],
   theme: {
     colors: {
-      lightGreen: "#00b90f",
-      cleanBlue: "#6CBAE9",
-      heavyBlue: "#68BAF2",
+      ...theme.colors,
     },
     extend: {
       minHeight: (theme) => ({
