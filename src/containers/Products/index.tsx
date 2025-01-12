@@ -10,7 +10,7 @@ import { Products } from "./products";
 
 import { NewProductFormContainer } from "../NewProductForm";
 
-import { ArrowBack, Clear } from "@mui/icons-material";
+import { Clear } from "@mui/icons-material";
 import { useSearchedProducts } from "@/hooks/products";
 import { BackButton } from "@/components/BackButton";
 
