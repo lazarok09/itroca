@@ -19,6 +19,7 @@ import { AvatarUser } from "../AvatarUser";
 import { Divider, InputBase } from "@mui/material";
 
 import { toast } from "react-toastify";
+import { HeaderMenuDialogBody } from "@/containers/Dialog";
 export const SEARCH_INPUT_NAME = "search-input";
 
 export default function HeaderAppBar() {
@@ -108,39 +109,3 @@ export default function HeaderAppBar() {
     </Box>
   );
 }
-
-const HeaderMenuDialogBody = ({
-  handleToggleMenu,
-}: {
-  handleToggleMenu: () => void;
-}) => {
-  return (
-    <div className="flex  flex-row align-center w-50  p-4">
-      <div className="flex flex-col ">
-        <Typography variant="h6" component="div">
-          Dashboard
-        </Typography>
-        <Typography variant="h6" component="div">
-          Products
-        </Typography>
-
-        <Typography variant="h6" component="div">
-          Login
-        </Typography>
-        <Typography variant="h6" component="div">
-          Log out
-        </Typography>
-      </div>
-
-      <form method="dialog">
-        <Button
-          title={"Fechar"}
-          className="cursor-pointer  "
-          onClick={handleToggleMenu}
-        >
-          <Close />
-        </Button>
-      </form>
-    </div>
-  );
-};

@@ -26,7 +26,7 @@ export const CustomDialogProvider = ({
         setBody,
       }}
     >
-      <DialogContainer dialogRef={dialogRef} body={body} />
+      <DialogContainer dialogRef={dialogRef} body={body} setBody={setBody} />
 
       {children}
     </DialogContext.Provider>

@@ -13,6 +13,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "a-static.mlcdn.com.br",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "avatars.githubusercontent.com",
         pathname: "/**",
       },
