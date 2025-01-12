@@ -10,7 +10,6 @@ import { Products } from "./products";
 
 import { NewProductFormContainer } from "../NewProductForm";
 
-import { Clear } from "@mui/icons-material";
 import { useSearchedProducts } from "@/hooks/products";
 import { BackButton } from "@/components/BackButton";
 
@@ -28,7 +27,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
     serverProducts,
   });
   const inputRef = useRef<HTMLInputElement>(null);
-  const [step, setStep] = useState<StepTypes>("registerProducts");
+  const [step, setStep] = useState<StepTypes>("default");
 
   const defaultView = useMemo(
     () =>
@@ -74,16 +73,11 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
 
   return (
     <section className="mb-5 ">
-      <BackButton onClick={() => setStep("default")} />
+      <BackButton
+        className={step === "default" ? "opacity-0" : ""}
+        onClick={() => setStep("default")}
+      />
       <div className="flex flex-wrap gap-5 ">{RENDERS[step]}</div>
-
-      <CustomButton
-        className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold "
-        title={"Adicionar mais produtos"}
-        onClick={() => cleanSearchParams({ ref: inputRef })}
-      >
-        <Clear />
-      </CustomButton>
     </section>
   );
 }
