@@ -4,7 +4,8 @@ import { FooterBottomNavigation } from "@/components/BottomNavigation";
 import { ErrorMessage } from "@/components/Error";
 import { Header } from "@/components/Header";
 import Image from "next/image";
-import { useEffect } from "react";
+import { version, useEffect } from "react";
+
 const donutsIcon = "/donuts.svg";
 
 export default function Error({
@@ -19,6 +20,8 @@ export default function Error({
     console.error(error);
   }, [error]);
 
+  console.log(version);
+  
   return (
     <div className=" min-h-screen">
       <Header />
@@ -28,7 +31,7 @@ export default function Error({
           <div className="flex w-max-72  ">
             <ErrorMessage
               label={"Seems like somenting went wrong :/"}
-              error={error?.message}
+              error={error}
             />
           </div>
         </article>
@@ -50,3 +53,4 @@ export default function Error({
     </div>
   );
 }
+  console.log("🚀 ~ version:", version)

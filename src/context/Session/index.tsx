@@ -8,6 +8,7 @@ import { getUser } from "@/services/itroca";
 export type iTrocaSession = {
   user: iTrocaUser;
   status: "pending" | "authenticated" | "notauthenticated";
+  error?: null | unknown;
 };
 
 export interface CustomSession {
@@ -42,9 +43,11 @@ export const CustomSessionProvider = ({
         }
       } catch (e) {
         console.error(e);
+
         setSession({
           status: "notauthenticated",
           user: DEFAULT_VALUES.session.user,
+          error: e,
         });
       }
     }
