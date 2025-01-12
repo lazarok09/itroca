@@ -38,9 +38,9 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
         />
       ) : (
         <section className="flex flex-wrap gap-4">
-          <article className="min-w-full">
+          <div className="min-w-full">
             <Products serverProducts={products} />
-          </article>
+          </div>
 
           <CustomButton
             className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
