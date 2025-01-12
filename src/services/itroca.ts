@@ -113,7 +113,7 @@ export const getProduct = async ({
 }: {
   customOptions?: RequestInit;
   id: string;
-}): Promise<ITrocaProduct[] | []> => {
+}): Promise<ITrocaProduct> => {
   const options: RequestInit = {
     credentials: "include",
     ...customOptions,
@@ -124,7 +124,7 @@ export const getProduct = async ({
   const response = await fetch(finalURL, options);
 
   await throwIfResponseNotOk(response);
-  const data: ITrocaProduct[] = await response.json();
+  const data: ITrocaProduct = await response.json();
   return data;
 };
 
