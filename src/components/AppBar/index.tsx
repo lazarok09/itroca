@@ -4,9 +4,7 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Close from "@mui/icons-material/Close";
-import Button from "@mui/material/Button";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
@@ -25,10 +23,6 @@ export const SEARCH_INPUT_NAME = "search-input";
 export default function HeaderAppBar() {
   const router = useRouter();
   const { dialogRef, setBody } = useDialog();
-
-  const handleRedirect = () => {
-    router.push("signup");
-  };
 
   const handleToggleMenu = () => {
     setBody(<HeaderMenuDialogBody handleToggleMenu={handleToggleMenu} />);
