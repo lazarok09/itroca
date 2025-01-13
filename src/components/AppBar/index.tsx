@@ -56,9 +56,9 @@ export default function HeaderAppBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: "#E3262E" }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className="bg-emeraldDark">
           <nav className={` w-full flex justify-between items-center`}>
             <MenuIcon onClick={handleToggleMenu} />
             <form
