@@ -4,5 +4,14 @@ import { useContext } from "react";
 export const useDialog = () => {
   const context = useContext(DialogContext);
 
-  return { ...context };
+  const closeDialog = () => {
+    
+    if (context.dialogRef?.current) {
+      if (context.dialogRef.current.open) {
+        context.setBody(null);
+        context.dialogRef.current.close();
+      }
+    }
+  };
+  return { ...context, closeDialog };
 };

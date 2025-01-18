@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, colors, Typography } from "@mui/material";
 import Link from "next/link";
 import LoginIcon from "@mui/icons-material/Login";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -8,6 +8,8 @@ import { useMemo } from "react";
 import { useSession } from "@/hooks/session";
 import { signOut } from "@/services/itroca";
 import { DEFAULT_VALUES } from "@/context/Session/context";
+import { useDialog } from "@/hooks/dialog";
+import { toast } from "react-toastify";
 
 type Props =
   | {
@@ -34,13 +36,30 @@ const VARIANT_MATCH: VARIANT = {
 
 export const DialogLink = ({ variant, href }: Props) => {
   const { setSession } = useSession();
+  const { closeDialog } = useDialog();
+
   const hanleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSession({
-      status: "notauthenticated",
-      user: DEFAULT_VALUES.session.user,
-    });
-    await signOut();
+    try {
+      setSession({
+        status: "notauthenticated",
+        user: DEFAULT_VALUES.session.user,
+      });
+      await signOut();
+    } catch (e) {
+      console.error(e);
+
+      toast.error(`Service not available`, {
+        className: "toast-custom-icon",
+        toastId: `error-${e}`,
+        autoClose: 2500,
+        progressStyle: {
+          background: colors.red["500"],
+        },
+      });
+
+      closeDialog();
+    }
   };
 
   const body = useMemo(
