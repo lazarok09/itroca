@@ -2,7 +2,7 @@
 
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
 import { ErrorMessage } from "@/components/Error";
-import { Header } from "@/components/Header";
+import HeaderContainer from "@/containers/Header";
 import Image from "next/image";
 import { version, useEffect } from "react";
 
@@ -24,7 +24,7 @@ export default function Error({
   
   return (
     <div className=" min-h-screen">
-      <Header />
+      <HeaderContainer />
       <section className="flex  items-center flex-col gap-3 ">
         <article className="flex flex-col gap-2 pt-32">
           <Image height={250} width={250} src={donutsIcon} alt={"donuts"} />

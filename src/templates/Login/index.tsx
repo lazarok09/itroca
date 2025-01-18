@@ -1,9 +1,9 @@
-import { Header } from "@/components/Header";
 import { LoginPageContainer } from "@/containers/LoginPage";
 
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
+import HeaderContainer from "@/containers/Header";
 // either Static metadata
 export const metadata: Metadata = {
   title: "iTroca | Login",
@@ -17,7 +17,7 @@ export const Login = () => {
          text-bg
       "
     >
-      <Header />
+      <HeaderContainer />
       <div
         data-testid="login"
         className="flex place-items-center justify-center min-h-[80vh]"

@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 
 import { Footer } from "@/components/Footer";
 
@@ -8,6 +7,7 @@ import { cookies } from "next/headers";
 import { AUTH_COOKIE_NAME } from "@/hooks/session";
 import React, { Fragment } from "react";
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
+import HeaderContainer from "@/containers/Header";
 
 export const Products = async () => {
   const cookieStorage = cookies();
@@ -23,7 +23,7 @@ export const Products = async () => {
 
   return (
     <Fragment>
-      <Header />
+      <HeaderContainer />
       <main className="p-4 min-h-max max-w-7xl m-auto">
         <ProductsContainer serverProducts={products} />
       </main>

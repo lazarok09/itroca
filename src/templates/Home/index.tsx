@@ -1,15 +1,13 @@
-import { Header } from "@/components/Header";
 
-import { Footer } from "@/components/Footer";
 import { Heading } from "@/components/Heading";
 import { LogoImage } from "@/components/LogoImage";
-import { Fragment } from "react";
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
+import HeaderContainer from "@/containers/Header";
 
 export const Home = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+      <HeaderContainer />
 
       <div
         data-testid="home"

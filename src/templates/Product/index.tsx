@@ -1,9 +1,9 @@
-import { Header } from "@/components/Header";
 
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
 import { getProduct } from "@/services/itroca";
 import { ProductsNotFounded } from "@/containers/Products/not-founded";
 import Image from "next/image";
+import HeaderContainer from "@/containers/Header";
 
 export default async function ProductTemplate({ id }: { id: string }) {
   const product = await getProduct({
@@ -21,7 +21,7 @@ export default async function ProductTemplate({ id }: { id: string }) {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <HeaderContainer />
 
       <div
         data-testid="home"
