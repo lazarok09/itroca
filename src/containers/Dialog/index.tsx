@@ -1,8 +1,7 @@
 import { DialogProps } from "@/context/Dialog";
 import { useSession } from "@/hooks/session";
 import { Close } from "@mui/icons-material";
-import { Button, Dialog, Typography } from "@mui/material";
-import Link from "next/link";
+import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { DialogLink } from "./dialog-link";
 type DialogContainerProps = {} & DialogProps;
@@ -73,7 +72,7 @@ export const HeaderMenuDialogBody = ({
 
         {!isAuthenticated ? <DialogLink href="/login" variant="login" /> : null}
 
-        <DialogLink href="/logout" variant="logout" />
+        <DialogLink variant="logout" />
       </nav>
     </div>
   );
