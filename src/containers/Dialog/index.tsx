@@ -3,7 +3,7 @@ import { useSession } from "@/hooks/session";
 import { Close } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
-import { DialogLink } from "./dialog-link";
+import { DialogLogOutActionButton, DialogLink } from "./dialog-link";
 type DialogContainerProps = {} & DialogProps;
 
 export const DialogContainer = ({
@@ -71,8 +71,7 @@ export const HeaderMenuDialogBody = ({
         <DialogLink href="/products" variant="products" />
 
         {!isAuthenticated ? <DialogLink href="/login" variant="login" /> : null}
-
-        <DialogLink variant="logout" />
+        <DialogLogOutActionButton />
       </nav>
     </div>
   );

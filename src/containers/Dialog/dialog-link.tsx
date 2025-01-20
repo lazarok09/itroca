@@ -20,7 +20,7 @@ type Props =
 
 type LogoutVariant = {
   variant: "logout";
-  href?: string;
+  href: string;
 };
 
 type VARIANT = {
@@ -35,6 +35,28 @@ const VARIANT_MATCH: VARIANT = {
 };
 
 export const DialogLink = ({ variant, href }: Props) => {
+  return (
+    <Link href={href}>
+      <DialogButton href={href} variant={variant} />
+    </Link>
+  );
+};
+
+const DialogButton = ({ variant }: Props) => {
+  return (
+    <Typography
+      variant="h6"
+      component="div"
+      className="flex gap-2  place-items-center"
+    >
+      {VARIANT_MATCH[variant]}
+
+      <span className="capitalize">{variant}</span>
+    </Typography>
+  );
+};
+
+export const DialogLogOutActionButton = () => {
   const { setSession } = useSession();
   const { closeDialog } = useDialog();
 
@@ -62,36 +84,14 @@ export const DialogLink = ({ variant, href }: Props) => {
     }
   };
 
-  const body = useMemo(
-    () => (
-      <Typography
-        variant="h6"
-        component="div"
-        className="flex gap-2  place-items-center"
+  return (
+    <form onSubmit={hanleSubmit}>
+      <Button
+        type="submit"
+        className="outline-none bg-transparent border-none pointer p-0 "
       >
-        {VARIANT_MATCH[variant]}
-
-        <span className="capitalize">{variant}</span>
-      </Typography>
-    ),
-    [href]
+        <DialogButton href="" variant="logout" />
+      </Button>
+    </form>
   );
-
-  if (!href?.length) {
-    if (variant === "logout") {
-      return (
-        <form onSubmit={hanleSubmit}>
-          <Button
-            type="submit"
-            className="outline-none bg-transparent border-none pointer p-0 "
-          >
-            {body}
-          </Button>
-        </form>
-      );
-    }
-    return body;
-  }
-
-  return href?.length ? <Link href={href}>{body}</Link> : body;
 };
