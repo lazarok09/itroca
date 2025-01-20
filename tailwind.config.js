@@ -19,6 +19,10 @@ module.exports = {
       colors: {
         ...theme.colors,
       },
+
+      fontFamily: {
+        sans: ["var(--font-roboto)"],
+      },
     },
   },
   plugins: [tailwindcssMotion],

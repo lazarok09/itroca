@@ -1,6 +1,6 @@
-import { getProducts } from "@/services/itroca";
+import { getProducts, getUserProducts } from "@/services/itroca";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, {  useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export const useSearchedProducts = ({
@@ -52,4 +52,27 @@ export const useSearchedProducts = ({
   };
 
   return { products, cleanSearchParams };
+};
+
+export const useUserProducts = () => {
+  const [products, setProducts] = useState<ITrocaProduct[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<unknown | null>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      try {
+        const data = await getUserProducts({});
+        setProducts(data);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return { products, isLoading, error };
 };

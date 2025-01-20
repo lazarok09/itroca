@@ -19,6 +19,9 @@ declare interface ITrocaProduct {
   name: string;
   price: number;
   image: string;
+  createdAt: string;
+  updatedAt: string;
+  userID: number;
 }
 declare interface GenericErrorHandler {
   status: number;

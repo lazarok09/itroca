@@ -107,6 +107,25 @@ export const getProducts = async ({
   return data;
 };
 
+export const getUserProducts = async ({
+  customOptions,
+}: {
+  customOptions?: RequestInit;
+}): Promise<ITrocaProduct[] | []> => {
+  const options: RequestInit = {
+    credentials: "include",
+    ...customOptions,
+  };
+
+  const finalURL = new URL(`${API_URL}/user/products`);
+
+  const response = await fetch(finalURL, options);
+
+  await throwIfResponseNotOk(response);
+  const data: ITrocaProduct[] = await response.json();
+  return data;
+};
+
 export const getProduct = async ({
   customOptions,
   id,

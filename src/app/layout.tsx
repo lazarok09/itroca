@@ -1,6 +1,4 @@
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Roboto } from "next/font/google";
 
 import ToastProvider from "./toast";
 
@@ -9,6 +7,13 @@ import { CustomSessionProvider } from "@/context/Session";
 import NProgressProvider from "./nprogress";
 import { CustomDialogProvider } from "@/context/Dialog";
 
+const roboto = Roboto({
+  preload: true,
+  subsets: ["cyrillic"],
+  weight: "400",
+  variable: "--font-roboto"
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -16,7 +21,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <NProgressProvider />
         <CustomSessionProvider>
           <CustomDialogProvider>
