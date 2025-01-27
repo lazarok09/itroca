@@ -18,6 +18,7 @@ import Button from "@mui/material/Button";
 import Alert, { AlertProps } from "@mui/material/Alert";
 import { Loading } from "@/components/Loading";
 import { useUserProducts } from "@/hooks/products";
+import { isValidImage } from "@/helpers/generic";
 
 interface User {
   name: string;
@@ -44,11 +45,15 @@ const useFakeMutation = () => {
 };
 
 function computeMutation(newRow: GridRowModel, oldRow: GridRowModel) {
+  console.log("🚀 ~ computeMutation ~ newRow:", newRow);
   if (newRow.name !== oldRow.name) {
     return `Name from '${oldRow.name}' to '${newRow.name}'`;
   }
   if (newRow.age !== oldRow.age) {
     return `Age from '${oldRow.age || ""}' to '${newRow.age || ""}'`;
+  }
+  if (newRow.productImage && isValidImage(newRow.productImage)) {
+    return `Image src from '${oldRow.productImage}' to '${newRow.productImage}'`;
   }
   return null;
 }
@@ -66,8 +71,13 @@ export default function AskConfirmationBeforeSave() {
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const processRowUpdate = React.useCallback(
-    (newRow: GridRowModel, oldRow: GridRowModel) =>
-      new Promise<GridRowModel>((resolve, reject) => {
+    (newRow: GridRowModel, oldRow: GridRowModel) => {
+      console.log(
+        "🚀 ~ AskConfirmationBeforeSave ~ processRowUpdate:",
+        processRowUpdate
+      );
+
+      return new Promise<GridRowModel>((resolve, reject) => {
         const mutation = computeMutation(newRow, oldRow);
         if (mutation) {
           // Save the arguments to resolve or reject the promise later
@@ -75,7 +85,8 @@ export default function AskConfirmationBeforeSave() {
         } else {
           resolve(oldRow); // Nothing was changed
         }
-      }),
+      });
+    },
     []
   );
 
@@ -109,11 +120,17 @@ export default function AskConfirmationBeforeSave() {
   };
 
   const renderConfirmDialog = () => {
+    console.log(
+      "🚀 ~ renderConfirmDialog ~ promiseArguments:",
+      promiseArguments
+    );
     if (!promiseArguments) {
       return null;
     }
 
     const { newRow, oldRow } = promiseArguments;
+    console.log("🚀 ~ renderConfirmDialog ~ oldRow:", oldRow);
+    console.log("🚀 ~ renderConfirmDialog ~ newRow:", newRow);
     const mutation = computeMutation(newRow, oldRow);
 
     return (
