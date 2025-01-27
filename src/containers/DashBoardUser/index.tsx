@@ -1,10 +1,7 @@
 "use client";
 
-import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "../../hooks/session";
-import { Button } from "@mui/material";
 import AskConfirmationBeforeSave from "@/templates/Dashboard/edit";
-import Image from "next/image";
 
 export const DashboardUser = () => {
   const { session } = useSession();

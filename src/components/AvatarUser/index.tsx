@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 type Props = {
   handleAvatar: () => void;
   userNameOrEquivalent: string;
@@ -34,15 +34,23 @@ export const AvatarUser = () => {
   };
 
   return (
-    <div className="flex drop-shadow-md lg:drop-shadow-xl ">
-      <button onClick={handleAvatar} title={userNameOrEquivalent}>
-        <Avatar
-          sx={{ bgcolor: deepOrange[500] }}
-          alt={userNameOrEquivalent}
-          src={image}
-        >
-          {userNameOrEquivalent}
-        </Avatar>
+    <div className="flex drop-shadow-md lg:drop-shadow-xl  ">
+      <button
+        type="button"
+        onClick={handleAvatar}
+        title={name && name?.length ? name : "Login"}
+      >
+        {status === "authenticated" ? (
+          <Avatar
+            sx={{ bgcolor: deepOrange[500] }}
+            alt={userNameOrEquivalent}
+            src={image}
+          >
+            {userNameOrEquivalent}
+          </Avatar>
+        ) : (
+          <AccountCircleIcon className="text-white " />
+        )}
       </button>
     </div>
   );

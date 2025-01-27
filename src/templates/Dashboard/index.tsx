@@ -1,12 +1,7 @@
-import { Footer } from "@/components/Footer";
-import { LogoImage } from "@/components/LogoImage";
 import { DashboardUser } from "@/containers/DashBoardUser";
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import HeaderContainer from "@/containers/Header";
-import { Button } from "@mui/material";
-import AskConfirmationBeforeSave from "./edit";
 
 export const Dashboard = async () => {
   return (
