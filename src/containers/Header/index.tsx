@@ -17,7 +17,8 @@ import { AvatarUser } from "../../components/AvatarUser";
 import { Divider, InputBase } from "@mui/material";
 
 import { toast } from "react-toastify";
-import { HeaderMenuDialogBody } from "@/containers/Dialog";
+import { HeaderMenuDialogBody } from "../Dialog/header-dialog";
+
 export const SEARCH_INPUT_NAME = "search-input";
 
 export default function HeaderContainer() {

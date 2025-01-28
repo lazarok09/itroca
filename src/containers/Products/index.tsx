@@ -1,7 +1,7 @@
 "use client";
 
 import { ProductsNotFounded } from "./not-founded";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 
@@ -12,6 +12,7 @@ import { NewProductFormContainer } from "../NewProductForm";
 
 import { useSearchedProducts } from "@/hooks/products";
 import { BackButton } from "@/components/BackButton";
+import { useRouter } from "next/navigation";
 
 export type ProductsContainerProps = {
   serverProducts: ITrocaProduct[] | [];
@@ -26,8 +27,14 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
   const { products, cleanSearchParams } = useSearchedProducts({
     serverProducts,
   });
-  const inputRef = useRef<HTMLInputElement>(null);
   const [step, setStep] = useState<StepTypes>("default");
+  const router = useRouter();
+
+  const handleAddProducts = () => {
+    router.replace("/dashboard", {
+      scroll: true,
+    });
+  };
 
   const defaultView = useMemo(
     () =>
@@ -45,7 +52,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
           <CustomButton
             className="font-medium bg-green-500 hover:bg-green-400 hover:font-semibold"
             title={"Adicionar mais produtos"}
-            onClick={() => setStep("registerProducts")}
+            onClick={handleAddProducts}
           >
             <AddIcon />
           </CustomButton>
@@ -72,7 +79,7 @@ export function ProductsContainer({ serverProducts }: ProductsContainerProps) {
   };
 
   return (
-    <section className="mb-5 ">
+    <section className="mb-5 " data-testid="render-products">
       <BackButton
         className={step === "default" ? "opacity-0" : ""}
         onClick={() => setStep("default")}
