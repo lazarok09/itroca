@@ -3,8 +3,8 @@ export const isValidImage = (url: string) => {
     const validImageTypes = ["jpg", "jpeg", "png", "webp", "svg"];
 
     const extension = url.split(".").pop();
-    
-    if (extension === undefined || !Array.isArray(extension)) {
+
+    if (extension === undefined) {
       return false;
     }
 
@@ -12,5 +12,5 @@ export const isValidImage = (url: string) => {
       return true;
     }
   }
-  return false;
+  return false; 
 };

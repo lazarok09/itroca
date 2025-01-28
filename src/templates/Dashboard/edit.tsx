@@ -19,6 +19,9 @@ import Alert, { AlertProps } from "@mui/material/Alert";
 import { Loading } from "@/components/Loading";
 import { useUserProducts } from "@/hooks/products";
 import { isValidImage } from "@/helpers/generic";
+import { toast } from "react-toastify";
+
+import { colors } from "@mui/material";
 
 interface User {
   name: string;
@@ -43,17 +46,30 @@ const useFakeMutation = () => {
     []
   );
 };
-
+const sendInvalidImageError = () => {
+  toast.error("Invalid image URL or format", {
+    className: "toast-custom-icon",
+    toastId: `error-invalid-image-url`,
+    autoClose: 1500,
+    progressStyle: {
+      background: colors.red["500"],
+    },
+  });
+};
 function computeMutation(newRow: GridRowModel, oldRow: GridRowModel) {
-  console.log("🚀 ~ computeMutation ~ newRow:", newRow);
   if (newRow.name !== oldRow.name) {
     return `Name from '${oldRow.name}' to '${newRow.name}'`;
   }
   if (newRow.age !== oldRow.age) {
     return `Age from '${oldRow.age || ""}' to '${newRow.age || ""}'`;
   }
-  if (newRow.productImage && isValidImage(newRow.productImage)) {
-    return `Image src from '${oldRow.productImage}' to '${newRow.productImage}'`;
+
+  if (newRow.productImage) {
+    if (isValidImage(newRow.productImage)) {
+      return `Image src from '${oldRow.productImage}' to '${newRow.productImage}'`;
+    } else {
+      sendInvalidImageError();
+    }
   }
   return null;
 }
@@ -72,11 +88,6 @@ export default function AskConfirmationBeforeSave() {
 
   const processRowUpdate = React.useCallback(
     (newRow: GridRowModel, oldRow: GridRowModel) => {
-      console.log(
-        "🚀 ~ AskConfirmationBeforeSave ~ processRowUpdate:",
-        processRowUpdate
-      );
-
       return new Promise<GridRowModel>((resolve, reject) => {
         const mutation = computeMutation(newRow, oldRow);
         if (mutation) {
@@ -120,17 +131,12 @@ export default function AskConfirmationBeforeSave() {
   };
 
   const renderConfirmDialog = () => {
-    console.log(
-      "🚀 ~ renderConfirmDialog ~ promiseArguments:",
-      promiseArguments
-    );
     if (!promiseArguments) {
       return null;
     }
 
     const { newRow, oldRow } = promiseArguments;
-    console.log("🚀 ~ renderConfirmDialog ~ oldRow:", oldRow);
-    console.log("🚀 ~ renderConfirmDialog ~ newRow:", newRow);
+    
     const mutation = computeMutation(newRow, oldRow);
 
     return (
