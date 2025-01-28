@@ -125,6 +125,30 @@ export const getUserProducts = async ({
   const data: ITrocaProduct[] = await response.json();
   return data;
 };
+export const patchUserProduct = async ({
+  productID,
+  body,
+}: {
+  body: string;
+  productID: number;
+}): Promise<ITrocaProduct> => {
+  const options: RequestInit = {
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PATCH",
+    body: JSON.stringify(body),
+  };
+
+  const finalURL = new URL(`${API_URL}/user/product/${productID}`);
+
+  const response = await fetch(finalURL, options);
+
+  await throwIfResponseNotOk(response);
+  const data: ITrocaProduct = await response.json();
+  return data;
+};
 
 export const getProduct = async ({
   customOptions,

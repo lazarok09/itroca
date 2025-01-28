@@ -22,6 +22,7 @@ import { isValidImage } from "@/helpers/generic";
 import { toast } from "react-toastify";
 
 import { colors } from "@mui/material";
+import { patchUserProduct } from "@/services/itroca";
 
 interface User {
   name: string;
@@ -47,30 +48,52 @@ const useFakeMutation = () => {
   );
 };
 const sendInvalidImageError = () => {
-  toast.error("Invalid image URL or format", {
+  return sendErrorToast({
+    message: "Invalid image URL",
+    toastID: "error-invalid-image-url",
+  });
+};
+
+const sendErrorToast = ({
+  message,
+  toastID,
+}: {
+  message: string;
+  toastID: string;
+}) => {
+  toast.error(message, {
     className: "toast-custom-icon",
-    toastId: `error-invalid-image-url`,
+    toastId: toastID,
     autoClose: 1500,
     progressStyle: {
       background: colors.red["500"],
     },
   });
 };
-function computeMutation(newRow: GridRowModel, oldRow: GridRowModel) {
-  if (newRow.name !== oldRow.name) {
-    return `Name from '${oldRow.name}' to '${newRow.name}'`;
-  }
-  if (newRow.age !== oldRow.age) {
-    return `Age from '${oldRow.age || ""}' to '${newRow.age || ""}'`;
-  }
 
-  if (newRow.productImage) {
-    if (isValidImage(newRow.productImage)) {
-      return `Image src from '${oldRow.productImage}' to '${newRow.productImage}'`;
+const mapValidProducts = (product: ITrocaProduct) => {
+  return {
+    ...product,
+    createdAt: new Date(product.createdAt),
+    updatedAt: new Date(product.updatedAt),
+  };
+};
+function computeMutation(newRow: GridRowModel, oldRow: GridRowModel) {
+  if (oldRow.image !== newRow.image) {
+    if (isValidImage(newRow.image)) {
+      return `Image src from '${oldRow.image}' to '${newRow.image}'`;
     } else {
       sendInvalidImageError();
     }
   }
+  if (newRow.name !== oldRow.name) {
+    return `Name from '${oldRow.name}' to '${newRow.name}'`;
+  }
+
+  if (newRow.price !== oldRow.price) {
+    return `Price from '${oldRow.price || ""}' to '${newRow.price || ""}'`;
+  }
+
   return null;
 }
 
@@ -112,12 +135,31 @@ export default function AskConfirmationBeforeSave() {
 
     try {
       // Make the HTTP request to save in the backend
-      const response = await mutateRow(newRow);
-      setSnackbar({ children: "User successfully saved", severity: "success" });
-      resolve(response);
+
+      const response = await patchUserProduct({
+        productID: Number(oldRow.id),
+        body: newRow,
+      });
+
+      // setSnackbar({
+      //   children: "Product successfully saved",
+      //   severity: "success",
+      // });
+
+      toast.success("Product successfully saved", {
+        className: "toast-custom-icon",
+        toastId: `success-create-product`,
+        autoClose: 1500,
+      });
+      resolve(mapValidProducts(response));
       setPromiseArguments(null);
     } catch (error) {
-      setSnackbar({ children: "Name cannot be empty", severity: "error" });
+      console.error("🚀 ~ handleYes ~ error:", error);
+      sendErrorToast({
+        message: "Could not patch the new product",
+        toastID: "error-patch-new-product",
+      });
+      // setSnackbar({ children: "Product can't be saved", severity: "error" });
       reject(oldRow);
       setPromiseArguments(null);
     }
@@ -136,7 +178,7 @@ export default function AskConfirmationBeforeSave() {
     }
 
     const { newRow, oldRow } = promiseArguments;
-    
+
     const mutation = computeMutation(newRow, oldRow);
 
     return (
@@ -163,14 +205,7 @@ export default function AskConfirmationBeforeSave() {
 
   const mappedRows: GridRowsProp = React.useMemo(() => {
     if (Array.isArray(products) && products?.length) {
-      return products?.map((product) => ({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        createdAt: new Date(product.createdAt),
-        updatedAt: new Date(product.updatedAt),
-        productImage: product.image,
-      }));
+      return products?.map(mapValidProducts);
     }
     return [];
   }, [products]);
@@ -206,7 +241,7 @@ export default function AskConfirmationBeforeSave() {
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 180, editable: false },
   {
-    field: "productImage",
+    field: "image",
     headerName: "Image",
     width: 180,
     editable: true,
@@ -216,7 +251,7 @@ const columns: GridColDef[] = [
           <div className="flex h-8 place-items-center   w-8 ">
             <img
               className="w-full h-full object-cover "
-              src={params.row.productImage}
+              src={params.row.image}
               alt={params.row.name}
             />
           </div>
