@@ -1,5 +1,6 @@
 "use client";
 
+import { AvatarUser } from "@/components/AvatarUser";
 import { useSession } from "../../hooks/session";
 import AskConfirmationBeforeSave from "@/templates/Dashboard/edit";
 import Link from "next/link";
@@ -61,14 +62,7 @@ export const DashboardUser = () => {
     <div className="flex flex-col items-center gap-4 md:gap-8  justify-center">
       <div className="flex flex-col gap-4 items-center justify-center">
         <div className="relative flex p-50 justify-center items-center gap-3 ">
-          <img
-            src={user.image}
-            height={60}
-            width={60}
-            alt={`Uma fotografia de ${user.name}`}
-            className="rounded-full"
-            loading="lazy"
-          />
+          <AvatarUser />
 
           <h1 className=" text-lg md:text-2xl  font-medium">
             Welcome{" "}
