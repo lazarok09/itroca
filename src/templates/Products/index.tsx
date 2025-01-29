@@ -1,4 +1,3 @@
-
 import { Footer } from "@/components/Footer";
 
 import { ProductsContainer } from "@/containers/Products";
@@ -8,6 +7,7 @@ import { AUTH_COOKIE_NAME } from "@/hooks/session";
 import React, { Fragment } from "react";
 import { FooterBottomNavigation } from "@/components/BottomNavigation";
 import HeaderContainer from "@/containers/Header";
+import { ProductsSliderContainer } from "@/containers/ProductsSliderContainer";
 
 export const Products = async () => {
   const cookieStorage = cookies();
@@ -25,10 +25,11 @@ export const Products = async () => {
     <Fragment>
       <HeaderContainer />
       <main className="p-4 min-h-max max-w-7xl m-auto">
+        <ProductsSliderContainer />
         <ProductsContainer serverProducts={products} />
       </main>
       <Footer />
-      <FooterBottomNavigation/>
+      <FooterBottomNavigation />
     </Fragment>
   );
 };
