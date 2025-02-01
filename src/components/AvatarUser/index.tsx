@@ -1,37 +1,29 @@
-import { useProfile } from "@/hooks/profile";
+
 import { Avatar } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-type Props = {
-  handleAvatar: () => void;
-  userNameOrEquivalent: string;
-  image: string;
-};
+import { useAvatarUser } from "@/hooks/avatar";
 
-export const AvatarUser = () => {
-  const router = useRouter();
-  const {
-    session: {
-      status,
-      user: { name, image },
-    },
-  } = useProfile();
+export async function AvatarUser() {
+  const { handleAvatar, image, name, status, userNameOrEquivalent } =
+    useAvatarUser();
 
-  const userNameOrEquivalent = useMemo(
-    () => (name?.length ? name?.at(0) : "L"),
-    [name]
-  );
-
-  const handleAvatar = () => {
-    if (status === "notauthenticated") {
-      router.push("/login");
+  const renderAvatar = useMemo(() => {
+    if (status === "authenticated" || status === "notauthenticated") {
+      <AccountCircleIcon className="text-white " />;
     }
-    if (status === "authenticated") {
-      router.push("/products");
-    }
-  };
+
+    return (
+      <Avatar
+        sx={{ bgcolor: deepOrange[500] }}
+        alt={userNameOrEquivalent}
+        src={image}
+      >
+        {userNameOrEquivalent}
+      </Avatar>
+    );
+  }, [image, userNameOrEquivalent, status]);
 
   return (
     <div className="flex drop-shadow-md lg:drop-shadow-xl  ">
@@ -40,18 +32,8 @@ export const AvatarUser = () => {
         onClick={handleAvatar}
         title={name && name?.length ? name : "Login"}
       >
-        {status === "authenticated" ? (
-          <Avatar
-            sx={{ bgcolor: deepOrange[500] }}
-            alt={userNameOrEquivalent}
-            src={image}
-          >
-            {userNameOrEquivalent}
-          </Avatar>
-        ) : (
-          <AccountCircleIcon className="text-white " />
-        )}
+        {renderAvatar}
       </button>
     </div>
   );
-};
+}

@@ -4,11 +4,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn } from "@/services/itroca";
 import { toast } from "react-toastify";
 import { CustomButton } from "../../components/CustomButton";
-import { useContext } from "react";
-import { CustomSessionContext } from "@/context/Session/context";
 import { redirect } from "next/navigation";
 import { CustomInput } from "../../components/CustomInput";
 import { colors } from "@mui/material";
+import { useSession } from "@/hooks/session";
 
 type Inputs = {
   useremail: string;
@@ -27,7 +26,7 @@ export const LoginFormContainer = () => {
 
   const canSubmit = !isLoading && !isSubmitting;
 
-  const { session, setSession } = useContext(CustomSessionContext);
+  const { session, setSession } = useSession();
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
@@ -58,7 +57,7 @@ export const LoginFormContainer = () => {
           toastId: `error-${e}`,
           autoClose: 1500,
           progressStyle: {
-            background: colors.green['500'],
+            background: colors.green["500"],
           },
         });
         return;

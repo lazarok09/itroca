@@ -4,16 +4,12 @@ import { signOut } from "@/services/itroca";
 import { useSession } from "../../hooks/session";
 
 import { HeaderLink } from "../HeaderLink";
-import { useContext } from "react";
-import {
-  CustomSessionContext,
-  DEFAULT_VALUES,
-} from "@/context/Session/context";
+
+import { DEFAULT_VALUES } from "@/context/Session/context";
 
 export const SignOutButton = () => {
-  const { setSession } = useContext(CustomSessionContext);
-  const { session } = useSession();
-  
+  const { session, setSession } = useSession();
+
   const handleClick = async () => {
     // TODO: finish signout handler
     await signOut();
