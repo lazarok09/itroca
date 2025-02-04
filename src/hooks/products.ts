@@ -1,3 +1,5 @@
+"use client";
+
 import { getProducts, getUserProducts } from "@/services/itroca";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";

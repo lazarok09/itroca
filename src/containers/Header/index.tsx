@@ -93,8 +93,9 @@ export default function HeaderContainer() {
                   type="button"
                   sx={{ p: "16px" }}
                   aria-label="search"
+                  onClick={toggleSearch}
                 >
-                  <SearchIcon onClick={toggleSearch} />
+                  <SearchIcon />
                 </IconButton>
                 <Divider sx={{ height: 40, m: 1 }} orientation="vertical" />
                 <IconButton

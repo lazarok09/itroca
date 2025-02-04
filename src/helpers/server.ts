@@ -1,4 +1,3 @@
-"use server";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
@@ -15,7 +14,7 @@ type TokenHandlerResult = {
 
 export async function getTokenHandler(): Promise<TokenHandlerResult> {
   const cookie = cookies();
-  const cookieToken = cookie.get(AUTH_COOKIE_NAME);
+  const cookieToken = (await cookie).get(AUTH_COOKIE_NAME);
 
   if (!cookieToken) {
     const error: ErrorInterface = {

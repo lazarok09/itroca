@@ -11,10 +11,10 @@ const roboto = Roboto({
   preload: true,
   subsets: ["cyrillic"],
   weight: "400",
-  variable: "--font-roboto"
+  variable: "--font-roboto",
 });
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;

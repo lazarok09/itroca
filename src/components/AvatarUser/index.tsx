@@ -1,3 +1,4 @@
+"use client";
 
 import { Avatar } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
@@ -5,7 +6,7 @@ import { useMemo } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAvatarUser } from "@/hooks/avatar";
 
-export async function AvatarUser() {
+export function AvatarUser() {
   const { handleAvatar, image, name, status, userNameOrEquivalent } =
     useAvatarUser();
 
