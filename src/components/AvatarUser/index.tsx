@@ -28,13 +28,9 @@ export function AvatarUser() {
 
   return (
     <div className="flex drop-shadow-md lg:drop-shadow-xl  ">
-      <button
-        type="button"
-        onClick={handleAvatar}
-        title={name && name?.length ? name : "Login"}
-      >
+      <div onClick={handleAvatar} title={name && name?.length ? name : "Login"}>
         {renderAvatar}
-      </button>
+      </div>
     </div>
   );
 }
